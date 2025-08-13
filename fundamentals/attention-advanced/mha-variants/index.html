@@ -1702,29 +1702,29 @@
 <tr>
 <td><strong>MHA</strong></td>
 <td>O(h×d×L)</td>
-<td>最高</td>
+<td>O(H x N^2 x D)</td>
 <td>基准性能</td>
 <td>标准Transformer</td>
 </tr>
 <tr>
 <td><strong>MQA</strong></td>
 <td>O(d×L)</td>
-<td>最低</td>
+<td>O(N^2×D)</td>
 <td>轻微下降</td>
-<td>快速推理</td>
+<td>资源受限场景</td>
 </tr>
 <tr>
 <td><strong>GQA</strong></td>
 <td>O(g×d×L)</td>
-<td>中等</td>
+<td>O(G×N^2×D)</td>
 <td>平衡优秀</td>
 <td>主流大模型</td>
 </tr>
 <tr>
 <td><strong>MLA</strong></td>
 <td>最优化</td>
-<td>优化</td>
-<td>超越MHA</td>
+<td>O(R×N^2×D)</td>
+<td>接近MHA</td>
 <td>长上下文</td>
 </tr>
 </tbody>
@@ -2002,6 +2002,12 @@
     
     
       <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
