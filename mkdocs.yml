@@ -9,6 +9,8 @@ nav:
     - 第1节 Transformer基础: 
       - 学习概览: fundamentals/transformer/index.md
       - Attention机制: fundamentals/transformer/attention.md
+      - 前馈神经网络: fundamentals/transformer/ffn.md
+      - 编码器-解码器架构: fundamentals/transformer/encoder-decoder.md
       - 语言模型架构: fundamentals/transformer/language-models.md
     - 第2节 Attention升级:
       - 学习概览: fundamentals/attention-advanced/index.md
@@ -20,15 +22,20 @@ nav:
       - 学习概览: fundamentals/llm-advanced/index.md
       - MOE架构: fundamentals/llm-advanced/moe.md
       - 分布式训练: fundamentals/llm-advanced/distributed.md
+    - 第4节 DeepSeek优化技术:
+      - 学习概览: fundamentals/deepseek-innovations/index.md
+      - MLA核心技术: fundamentals/deepseek-innovations/mla.md
+      - DeepSeek MoE创新: fundamentals/deepseek-innovations/deepseek-moe.md
+      - MTP多token预测: fundamentals/deepseek-innovations/mtp.md
   - 大模型应用:
-    - 第4节 Context Engineering:
+    - 第5节 Context Engineering:
       - 学习概览: applications/context-engineering/index.md
       - 上下文工程实践: applications/context-engineering/practices.md
-    - 第5节 RAG与Agent:
+    - 第6节 RAG与Agent:
       - 学习概览: applications/rag-agent/index.md
       - RAG技术: applications/rag-agent/rag.md
       - AI Agent: applications/rag-agent/agent.md
-    - 第6节 CoT与评测:
+    - 第7节 CoT与评测:
       - 学习概览: applications/cot-evaluation/index.md
       - 思维链技术: applications/cot-evaluation/cot.md
       - LangChain框架: applications/cot-evaluation/langchain.md

@@ -25,7 +25,19 @@
 - 多头注意力机制
 - 代码实现练习
 
-### 2. [语言模型架构](language-models.md)  
+### 2. [前馈神经网络](ffn.md)
+- FFN结构和功能原理
+- 激活函数演进(ReLU→GELU→SwiGLU)
+- 知识存储机制
+- 与注意力的互补关系
+
+### 3. [编码器-解码器架构](encoder-decoder.md)
+- 原始Transformer完整架构
+- 三种注意力机制详解
+- 掩码机制和交叉注意力
+- 现代架构演进趋势
+
+### 4. [语言模型架构](language-models.md)  
 - Encoder-Only vs Decoder-Only
 - GPT vs BERT架构对比
 - 主流模型选择分析
