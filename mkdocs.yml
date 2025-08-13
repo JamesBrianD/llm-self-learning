@@ -12,6 +12,7 @@ nav:
       - 前馈神经网络: fundamentals/transformer/ffn.md
       - 编码器-解码器架构: fundamentals/transformer/encoder-decoder.md
       - 语言模型架构: fundamentals/transformer/language-models.md
+      - Tokenizer技术: fundamentals/transformer/tokenizer.md
     - 第2节 Attention升级:
       - 学习概览: fundamentals/attention-advanced/index.md
       - 多头注意力变体: fundamentals/attention-advanced/mha-variants.md
