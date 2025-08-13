@@ -10,24 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://jamesbriand.github.io/llm-self-learning/reference/markdown/">
+        <link rel="canonical" href="https://jamesbriand.github.io/llm-self-learning/fundamentals/transformer/language-models/">
       
       
+        <link rel="prev" href="../attention/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+        <link rel="next" href="../../attention-advanced/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
-        <title>Markdown 语法参考 - LLM 自学指南</title>
+        <title>语言模型架构 - LLM 自学指南</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#markdown" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -88,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="LLM 自学指南" class="md-header__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
+    <a href="../../.." title="LLM 自学指南" class="md-header__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Markdown 语法参考
+              语言模型架构
             
           </span>
         </div>
@@ -219,7 +223,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="LLM 自学指南" class="md-nav__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
+    <a href="../../.." title="LLM 自学指南" class="md-nav__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -237,7 +241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -259,7 +263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/" class="md-nav__link">
+      <a href="../../../getting-started/" class="md-nav__link">
         
   
   
@@ -278,18 +282,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -305,7 +311,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             模型基础
@@ -316,18 +322,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -343,7 +351,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             第1节 Transformer基础
@@ -357,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -380,7 +388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/attention/" class="md-nav__link">
+      <a href="../attention/" class="md-nav__link">
         
   
   
@@ -400,10 +408,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/language-models/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    语言模型架构
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -414,6 +444,203 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 本节目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 阅读材料
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 阅读材料">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心概念文章
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 知识总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 知识总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      三大架构类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attention-mask" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attention Mask对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 面试问题解答
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💬 面试问题解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-encoder-onlydecoder-onlygptbert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1: Encoder-Only和Decoder-Only架构是什么？GPT和BERT分别是什么架构？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1.1: 架构区别是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1.2: 用途差异？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1.3: 优劣比较
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-decoder-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2: 为什么主流大模型都用Decoder-Only架构？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-qwenllama" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3: 简单讲解Qwen/LLaMA模型架构
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      架构对比示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 学习检验
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关链接
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -472,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/" class="md-nav__link">
+      <a href="../../attention-advanced/" class="md-nav__link">
         
   
   
@@ -495,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/mha-variants/" class="md-nav__link">
+      <a href="../../attention-advanced/mha-variants/" class="md-nav__link">
         
   
   
@@ -518,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/kv-cache/" class="md-nav__link">
+      <a href="../../attention-advanced/kv-cache/" class="md-nav__link">
         
   
   
@@ -541,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/normalization/" class="md-nav__link">
+      <a href="../../attention-advanced/normalization/" class="md-nav__link">
         
   
   
@@ -564,7 +791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/positional-encoding/" class="md-nav__link">
+      <a href="../../attention-advanced/positional-encoding/" class="md-nav__link">
         
   
   
@@ -633,7 +860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/" class="md-nav__link">
+      <a href="../../llm-advanced/" class="md-nav__link">
         
   
   
@@ -656,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/moe/" class="md-nav__link">
+      <a href="../../llm-advanced/moe/" class="md-nav__link">
         
   
   
@@ -679,7 +906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/distributed/" class="md-nav__link">
+      <a href="../../llm-advanced/distributed/" class="md-nav__link">
         
   
   
@@ -793,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/context-engineering/" class="md-nav__link">
+      <a href="../../../applications/context-engineering/" class="md-nav__link">
         
   
   
@@ -816,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/context-engineering/practices/" class="md-nav__link">
+      <a href="../../../applications/context-engineering/practices/" class="md-nav__link">
         
   
   
@@ -885,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/" class="md-nav__link">
         
   
   
@@ -908,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/rag/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/rag/" class="md-nav__link">
         
   
   
@@ -931,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/agent/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/agent/" class="md-nav__link">
         
   
   
@@ -1000,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/" class="md-nav__link">
         
   
   
@@ -1023,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/cot/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/cot/" class="md-nav__link">
         
   
   
@@ -1046,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/langchain/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/langchain/" class="md-nav__link">
         
   
   
@@ -1069,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/evaluation/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/evaluation/" class="md-nav__link">
         
   
   
@@ -1107,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../interview/" class="md-nav__link">
+      <a href="../../../interview/" class="md-nav__link">
         
   
   
@@ -1129,7 +1356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../code-examples/" class="md-nav__link">
+      <a href="../../../code-examples/" class="md-nav__link">
         
   
   
@@ -1171,79 +1398,61 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      基础语法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="基础语法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      标题
+      🎯 本节目标
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      文本样式
+      📖 阅读材料
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="📖 阅读材料">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      列表
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="列表">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      无序列表
+      核心概念文章
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 知识总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 知识总结">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      有序列表
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      链接和图片
+      三大架构类型
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#attention-mask" class="md-nav__link">
     <span class="md-ellipsis">
-      表格
+      Attention Mask对比
     </span>
   </a>
   
@@ -1255,46 +1464,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      扩展语法
+      💬 面试问题解答
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="扩展语法">
+    <nav class="md-nav" aria-label="💬 面试问题解答">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#q1-encoder-onlydecoder-onlygptbert" class="md-nav__link">
     <span class="md-ellipsis">
-      代码块
+      Q1: Encoder-Only和Decoder-Only架构是什么？GPT和BERT分别是什么架构？
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#q11" class="md-nav__link">
     <span class="md-ellipsis">
-      告示框（需要扩展）
+      Q1.1: 架构区别是什么？
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#q12" class="md-nav__link">
     <span class="md-ellipsis">
-      任务列表
+      Q1.2: 用途差异？
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#q13" class="md-nav__link">
     <span class="md-ellipsis">
-      脚注
+      Q1.3: 优劣比较
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-decoder-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2: 为什么主流大模型都用Decoder-Only架构？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-qwenllama" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3: 简单讲解Qwen/LLaMA模型架构
     </span>
   </a>
   
@@ -1306,9 +1533,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      最佳实践
+      💻 代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      架构对比示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 学习检验
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关链接
     </span>
   </a>
   
@@ -1330,114 +1590,208 @@
 
 
 
-<h1 id="markdown">Markdown 语法参考<a class="headerlink" href="#markdown" title="Permanent link">&para;</a></h1>
-<p>完整的 Markdown 语法参考指南。</p>
-<h2 id="_1">基础语法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="_2">标题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gh"># H1 标题</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gu">## H2 标题</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gu">### H3 标题</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gu">#### H4 标题</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gu">##### H5 标题</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="gu">###### H6 标题</span>
-</code></pre></div>
-<h3 id="_3">文本样式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h1 id="_1">语言模型架构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">🎯 本节目标<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>理解不同Transformer架构的设计原理，掌握GPT与BERT的核心差异，解释为什么大模型偏爱Decoder-Only架构。</p>
+<h2 id="_3">📖 阅读材料<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">核心概念文章<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>参考Attention机制页面的阅读材料，重点关注：
+- Encoder-Only vs Decoder-Only架构对比
+- GPT系列模型的演进
+- BERT的双向编码特性</p>
+<h2 id="_5">📝 知识总结<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">三大架构类型<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>样式</th>
-<th>语法</th>
-<th>示例</th>
+<th>架构类型</th>
+<th>代表模型</th>
+<th>特点</th>
+<th>应用场景</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>粗体</td>
-<td><code>**文本**</code> 或 <code>__文本__</code></td>
-<td><strong>粗体文本</strong></td>
+<td><strong>Encoder-Only</strong></td>
+<td>BERT, RoBERTa</td>
+<td>双向注意力，适合理解任务</td>
+<td>文本分类、阅读理解、情感分析</td>
 </tr>
 <tr>
-<td>斜体</td>
-<td><code>*文本*</code> 或 <code>_文本_</code></td>
-<td><em>斜体文本</em></td>
+<td><strong>Decoder-Only</strong></td>
+<td>GPT, LLaMA, ChatGPT</td>
+<td>因果注意力，适合生成任务</td>
+<td>文本生成、对话、代码生成</td>
 </tr>
 <tr>
-<td>删除线</td>
-<td><code>~~文本~~</code></td>
-<td>~~删除线文本~~</td>
-</tr>
-<tr>
-<td>行内代码</td>
-<td><code>`代码`</code></td>
-<td><code>代码</code></td>
+<td><strong>Encoder-Decoder</strong></td>
+<td>T5, BART</td>
+<td>编码-解码结构</td>
+<td>翻译、摘要、问答</td>
 </tr>
 </tbody>
 </table>
-<h3 id="_4">列表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<h4 id="_5">无序列表<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">-</span><span class="w"> </span>项目 1
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">-</span><span class="w"> </span>项目 2
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>子项目 2.1
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>子项目 2.2
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">-</span><span class="w"> </span>项目 3
-</code></pre></div>
-<h4 id="_6">有序列表<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">1.</span> 第一项
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">2.</span> 第二项
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">   </span><span class="k">1.</span> 子项目 2.1
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">   </span><span class="k">2.</span> 子项目 2.2
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">3.</span> 第三项
-</code></pre></div>
-<h3 id="_7">链接和图片<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[<span class="nt">链接文本</span>](<span class="na">https://example.com</span>)
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>[<span class="nt">内部链接</span>](<span class="na">../index.md</span>)
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>![<span class="nt">图片描述</span>](<span class="na">image.png</span>)
-</code></pre></div>
-<h3 id="_8">表格<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>| 表头1 | 表头2 | 表头3 |
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>|-------|-------|-------|
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>| 单元格1 | 单元格2 | 单元格3 |
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>| 单元格4 | 单元格5 | 单元格6 |
-</code></pre></div>
-<h2 id="_9">扩展语法<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<h3 id="_10">代码块<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="sb">```python</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="sb">```</span>
-</code></pre></div>
-<h3 id="_11">告示框（需要扩展）<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>!!! note &quot;注释&quot;
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    这是一个注释框。
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>!!! tip &quot;提示&quot;
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    这是一个提示框。
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>!!! warning &quot;警告&quot;
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    这是一个警告框。
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>!!! danger &quot;危险&quot;
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    这是一个危险警告框。
-</code></pre></div>
-<h3 id="_12">任务列表<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">- [x]</span> 已完成的任务
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">- [ ]</span> 未完成的任务
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">- [ ]</span> 另一个未完成的任务
-</code></pre></div>
-<h3 id="_13">脚注<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>这里有一个脚注引用[^1]。
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>[<span class="nl">^1</span>]: <span class="na">这是脚注内容。</span>
-</code></pre></div>
-<h2 id="_14">最佳实践<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h3 id="attention-mask">Attention Mask对比<a class="headerlink" href="#attention-mask" title="Permanent link">&para;</a></h3>
+<p><strong>BERT (双向注意力):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Token:  [CLS] I    love  AI   [SEP]
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Mask:   ✓     ✓    ✓     ✓    ✓
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>每个token都可以看到所有其他token
+</code></pre></div></p>
+<p><strong>GPT (因果注意力):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Token:  I    love  AI    very  much
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Mask:   ✓    
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        ✓    ✓     
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        ✓    ✓     ✓
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        ✓    ✓     ✓     ✓
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        ✓    ✓     ✓     ✓     ✓
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>每个token只能看到它之前的token（包括自己）
+</code></pre></div></p>
+<h2 id="_7">💬 面试问题解答<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="q1-encoder-onlydecoder-onlygptbert">Q1: Encoder-Only和Decoder-Only架构是什么？GPT和BERT分别是什么架构？<a class="headerlink" href="#q1-encoder-onlydecoder-onlygptbert" title="Permanent link">&para;</a></h3>
+<p><strong>简洁回答：</strong>
+- <strong>Encoder-Only</strong>: 使用双向注意力，可以同时看到前后文本，BERT就是这种架构
+- <strong>Decoder-Only</strong>: 使用因果注意力，只能看到当前位置之前的文本，GPT系列都是这种架构</p>
+<h3 id="q11">Q1.1: 架构区别是什么？<a class="headerlink" href="#q11" title="Permanent link">&para;</a></h3>
+<p><strong>核心区别：</strong></p>
 <ol>
-<li><strong>使用描述性标题</strong> - 让读者快速了解内容</li>
-<li><strong>保持一致的格式</strong> - 统一的样式让文档更专业</li>
-<li><strong>适度使用格式</strong> - 过多的格式会影响可读性</li>
-<li><strong>添加目录链接</strong> - 帮助用户快速导航</li>
+<li><strong>注意力机制</strong></li>
+<li>Encoder-Only: 双向注意力，无掩码限制</li>
+<li>
+<p>Decoder-Only: 因果注意力，使用下三角掩码</p>
+</li>
+<li>
+<p><strong>训练目标</strong></p>
+</li>
+<li>BERT: 掩码语言模型(MLM) + 下一句预测(NSP)</li>
+<li>
+<p>GPT: 自回归语言模型，预测下一个token</p>
+</li>
+<li>
+<p><strong>位置编码</strong></p>
+</li>
+<li>BERT: 绝对位置编码</li>
+<li>GPT: 绝对位置编码（早期）→ 相对位置编码（现代）</li>
 </ol>
-<p>!!! tip "编写技巧"
-    定期预览您的文档，确保格式正确渲染。</p>
+<h3 id="q12">Q1.2: 用途差异？<a class="headerlink" href="#q12" title="Permanent link">&para;</a></h3>
+<p><strong>BERT擅长理解任务：</strong>
+- 文本分类
+- 情感分析<br />
+- 阅读理解
+- 实体识别</p>
+<p><strong>GPT擅长生成任务：</strong>
+- 文本续写
+- 对话生成
+- 代码生成
+- 创意写作</p>
+<h3 id="q13">Q1.3: 优劣比较<a class="headerlink" href="#q13" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方面</th>
+<th>BERT优势</th>
+<th>GPT优势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>理解能力</strong></td>
+<td>双向上下文，理解更深入</td>
+<td>适合序列生成，逻辑连贯</td>
+</tr>
+<tr>
+<td><strong>训练效率</strong></td>
+<td>并行训练所有位置</td>
+<td>自回归训练，简单稳定</td>
+</tr>
+<tr>
+<td><strong>推理速度</strong></td>
+<td>并行推理</td>
+<td>需要逐步生成</td>
+</tr>
+<tr>
+<td><strong>应用灵活性</strong></td>
+<td>需要针对下游任务微调</td>
+<td>Zero-shot能力强</td>
+</tr>
+</tbody>
+</table>
+<h3 id="q2-decoder-only">Q2: 为什么主流大模型都用Decoder-Only架构？<a class="headerlink" href="#q2-decoder-only" title="Permanent link">&para;</a></h3>
+<p><strong>主要原因：</strong></p>
+<ol>
+<li><strong>统一的生成范式</strong></li>
+<li>所有任务都可以转化为文本生成</li>
+<li>
+<p>无需针对不同任务设计特殊架构</p>
+</li>
+<li>
+<p><strong>更强的涌现能力</strong></p>
+</li>
+<li>大规模预训练后展现出强大的few-shot学习能力</li>
+<li>
+<p>指令跟随能力天然适合对话场景</p>
+</li>
+<li>
+<p><strong>扩展性更好</strong></p>
+</li>
+<li>架构简单，易于扩大模型规模</li>
+<li>
+<p>训练稳定性更好</p>
+</li>
+<li>
+<p><strong>应用场景更广</strong></p>
+</li>
+<li>从对话到代码生成，一个模型搞定</li>
+<li>商业价值更高</li>
+</ol>
+<h3 id="q3-qwenllama">Q3: 简单讲解Qwen/LLaMA模型架构<a class="headerlink" href="#q3-qwenllama" title="Permanent link">&para;</a></h3>
+<p><strong>LLaMA架构特点：</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>输入 → Token Embedding + 位置编码
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>     ↓
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   N × Decoder Layer:
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>     ├── RMSNorm
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>     ├── Multi-Head Attention (RoPE位置编码)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>     ├── 残差连接
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>     ├── RMSNorm  
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>     ├── SwiGLU FFN
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>     └── 残差连接
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>     ↓
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   RMSNorm → 输出层 → 预测下一个token
+</code></pre></div>
+<p><strong>关键技术改进：</strong>
+- <strong>RMSNorm</strong>: 替代LayerNorm，计算更高效
+- <strong>RoPE位置编码</strong>: 相对位置编码，支持更长序列
+- <strong>SwiGLU激活</strong>: 替代ReLU，效果更好
+- <strong>Pre-Norm</strong>: 归一化前置，训练更稳定</p>
+<h2 id="_8">💻 代码实现<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">架构对比示例<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># BERT风格的双向注意力</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">BidirectionalAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="c1"># 可以看到全部序列</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">attn_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">seq_len</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">)</span>  <span class="c1"># 全1矩阵</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">attn_mask</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># GPT风格的因果注意力  </span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">CausalAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="c1"># 只能看到当前位置之前</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">seq_len</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">attn_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">seq_len</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">))</span>  <span class="c1"># 下三角矩阵</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">attn_mask</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_10">✅ 学习检验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[ ] 能画出BERT和GPT的架构对比图</li>
+<li>[ ] 理解为什么GPT需要因果掩码</li>
+<li>[ ] 能解释主流大模型选择Decoder-Only的原因</li>
+<li>[ ] 掌握LLaMA/Qwen的关键技术改进点</li>
+</ul>
+<h2 id="_11">🔗 相关链接<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../attention/">上一节：Attention机制</a></li>
+<li><a href="../../attention-advanced/">下一节：Attention升级技术</a></li>
+<li><a href="../">返回：Transformer基础概览</a></li>
+</ul>
 
 
 
@@ -1492,10 +1846,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>

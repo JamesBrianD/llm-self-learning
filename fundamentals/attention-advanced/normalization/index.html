@@ -1,0 +1,2184 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="大语言模型与AI学习资源汇总">
+      
+      
+      
+        <link rel="canonical" href="https://jamesbriand.github.io/llm-self-learning/fundamentals/attention-advanced/normalization/">
+      
+      
+        <link rel="prev" href="../kv-cache/">
+      
+      
+        <link rel="next" href="../positional-encoding/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>归一化技术 - LLM 自学指南</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Slab";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="LLM 自学指南" class="md-header__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LLM 自学指南
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              归一化技术
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="LLM 自学指南" class="md-nav__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LLM 自学指南
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    学习指南
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    模型基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            模型基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第1节 Transformer基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            第1节 Transformer基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    学习概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transformer/attention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Attention机制
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transformer/language-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    语言模型架构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第2节 Attention升级
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            第2节 Attention升级
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    学习概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mha-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    多头注意力变体
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kv-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    KV Cache技术
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    归一化技术
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    归一化技术
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 本节目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 阅读材料
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 阅读材料">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心技术文章
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      选读深入材料
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 知识总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 知识总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      三大归一化技术对比
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      数学公式详解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数学公式详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-batch-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Batch Normalization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-layer-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Layer Normalization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-rms-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RMS Normalization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-norm-vs-post-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Norm vs Post-Norm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Norm vs Post-Norm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-norm-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Norm (原始Transformer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Norm (现代主流)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 面试问题解答
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💬 面试问题解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-batch-normlayer-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1: Batch Norm和Layer Norm的区别？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2: 为什么现在用RMSNorm？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-pre-normpost-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3: Pre-Norm和Post-Norm的位置区别？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-pre-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q4: 为什么Pre-Norm训练更稳定？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normpytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      三种Norm的PyTorch实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 学习检验
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关链接
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../positional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    位置编码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第3节 LLM升级技术
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            第3节 LLM升级技术
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../llm-advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    学习概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../llm-advanced/moe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MOE架构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../llm-advanced/distributed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分布式训练
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大模型应用
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            大模型应用
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第4节 Context Engineering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            第4节 Context Engineering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/context-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    学习概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/context-engineering/practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    上下文工程实践
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第5节 RAG与Agent
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            第5节 RAG与Agent
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/rag-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    学习概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/rag-agent/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG技术
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/rag-agent/agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第6节 CoT与评测
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            第6节 CoT与评测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/cot-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    学习概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/cot-evaluation/cot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    思维链技术
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/cot-evaluation/langchain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LangChain框架
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../applications/cot-evaluation/evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模型评测
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    面试题库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    代码实现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 本节目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 阅读材料
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 阅读材料">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心技术文章
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      选读深入材料
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 知识总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 知识总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      三大归一化技术对比
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      数学公式详解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数学公式详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-batch-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Batch Normalization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-layer-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Layer Normalization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-rms-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RMS Normalization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-norm-vs-post-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Norm vs Post-Norm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Norm vs Post-Norm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-norm-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Norm (原始Transformer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Norm (现代主流)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 面试问题解答
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💬 面试问题解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-batch-normlayer-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1: Batch Norm和Layer Norm的区别？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2: 为什么现在用RMSNorm？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-pre-normpost-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3: Pre-Norm和Post-Norm的位置区别？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-pre-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q4: 为什么Pre-Norm训练更稳定？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normpytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      三种Norm的PyTorch实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 学习检验
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关链接
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">归一化技术<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">🎯 本节目标<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>掌握深度学习中三大归一化技术的原理和应用场景，理解Pre-Norm与Post-Norm在Transformer中的影响。</p>
+<h2 id="_3">📖 阅读材料<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">核心技术文章<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/648987575">大模型中常见的3种Norm</a> - 知乎</li>
+<li><a href="https://zhuanlan.zhihu.com/p/12392406696">为什么当前主流的大模型都使用RMS-Norm？</a> - 知乎  </li>
+<li><a href="https://spaces.ac.cn/archives/9009">为什么Pre Norm的效果不如Post Norm？</a> - 科学空间</li>
+</ol>
+<h3 id="_5">选读深入材料<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://spaces.ac.cn/archives/6992">BN究竟起了什么作用？</a> - 科学空间</li>
+</ul>
+<h2 id="_6">📝 知识总结<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">三大归一化技术对比<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>归一化维度</th>
+<th>适用场景</th>
+<th>主要优势</th>
+<th>计算成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BatchNorm</strong></td>
+<td>跨样本特征维度</td>
+<td>CNN、大batch</td>
+<td>训练加速、防过拟合</td>
+<td>中等</td>
+</tr>
+<tr>
+<td><strong>LayerNorm</strong></td>
+<td>单样本所有特征</td>
+<td>RNN、Transformer</td>
+<td>不依赖batch大小</td>
+<td>较高</td>
+</tr>
+<tr>
+<td><strong>RMSNorm</strong></td>
+<td>单样本RMS归一化</td>
+<td>大型语言模型</td>
+<td>计算高效、效果相当</td>
+<td>最低</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">数学公式详解<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h4 id="1-batch-normalization">1. Batch Normalization<a class="headerlink" href="#1-batch-normalization" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>BN(x) = γ × \frac{x - μ_B}{\sqrt{σ_B^2 + ε}} + β
+</code></pre></div>
+<p><strong>核心特点</strong>:
+- μ_B, σ_B: 在batch维度计算均值和方差
+- 训练时使用当前batch统计量，推理时使用移动平均
+- 需要γ(缩放)和β(偏移)可学习参数</p>
+<p><strong>问题</strong>:
+- 依赖batch大小，小batch效果差
+- 训练和推理不一致
+- 在序列模型中效果不佳</p>
+<h4 id="2-layer-normalization">2. Layer Normalization<a class="headerlink" href="#2-layer-normalization" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>LN(x) = γ × \frac{x - μ_L}{\sqrt{σ_L^2 + ε}} + β
+</code></pre></div>
+<p><strong>核心特点</strong>:
+- μ_L, σ_L: 在特征维度计算均值和方差
+- 每个样本独立归一化，不依赖其他样本
+- 训练和推理一致</p>
+<p><strong>优势</strong>:
+- 适合变长序列
+- 不受batch大小影响
+- Transformer的标准选择</p>
+<h4 id="3-rms-normalization">3. RMS Normalization<a class="headerlink" href="#3-rms-normalization" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>RMSNorm(x) = γ × \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2 + ε}}
+</code></pre></div>
+<p><strong>核心特点</strong>:
+- 只计算RMS，不减去均值
+- 简化了LayerNorm的计算
+- 只需要γ参数，无需β</p>
+<p><strong>优势</strong>:
+- 计算成本更低
+- 在大模型中效果不输LayerNorm
+- 内存友好</p>
+<h3 id="pre-norm-vs-post-norm">Pre-Norm vs Post-Norm<a class="headerlink" href="#pre-norm-vs-post-norm" title="Permanent link">&para;</a></h3>
+<h4 id="post-norm-transformer">Post-Norm (原始Transformer)<a class="headerlink" href="#post-norm-transformer" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Input → Attention → Add → LayerNorm → FFN → Add → LayerNorm → Output
+</code></pre></div>
+<p><strong>特点</strong>:
+- 归一化在残差连接之后
+- 需要学习率warmup才能稳定训练
+- 浅层模型(≤6层)效果更好
+- 梯度传播可能不稳定</p>
+<h4 id="pre-norm">Pre-Norm (现代主流)<a class="headerlink" href="#pre-norm" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Input → LayerNorm → Attention → Add → LayerNorm → FFN → Add → Output
+</code></pre></div>
+<p><strong>特点</strong>:
+- 归一化在残差连接之前
+- 训练更稳定，无需warmup
+- 深层模型训练更容易
+- 现代大模型的标准选择</p>
+<h2 id="_9">💬 面试问题解答<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="q1-batch-normlayer-norm">Q1: Batch Norm和Layer Norm的区别？<a class="headerlink" href="#q1-batch-normlayer-norm" title="Permanent link">&para;</a></h3>
+<p><strong>核心区别</strong>:</p>
+<ol>
+<li><strong>归一化维度不同</strong>:</li>
+<li>BatchNorm: 在batch维度归一化，每个特征独立</li>
+<li>
+<p>LayerNorm: 在特征维度归一化，每个样本独立</p>
+</li>
+<li>
+<p><strong>应用场景</strong>:</p>
+</li>
+<li>BatchNorm: CNN、视觉任务、大batch训练</li>
+<li>
+<p>LayerNorm: NLP、序列模型、小batch或变长序列</p>
+</li>
+<li>
+<p><strong>依赖性</strong>:</p>
+</li>
+<li>BatchNorm: 依赖batch大小和其他样本</li>
+<li>LayerNorm: 只依赖当前样本，更稳定</li>
+</ol>
+<p><strong>技术细节</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># BatchNorm: 在batch维度计算统计量</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">batch_mean</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># [features]</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">batch_var</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># [features]</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># LayerNorm: 在特征维度计算统计量  </span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">layer_mean</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [batch, 1]</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">layer_var</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    <span class="c1"># [batch, 1]</span>
+</code></pre></div></p>
+<h3 id="q2-rmsnorm">Q2: 为什么现在用RMSNorm？<a class="headerlink" href="#q2-rmsnorm" title="Permanent link">&para;</a></h3>
+<p><strong>主要原因</strong>:</p>
+<ol>
+<li><strong>计算效率</strong>:</li>
+<li>省略了均值计算，减少了约15%的计算量</li>
+<li>
+<p>内存访问更少，对GPU更友好</p>
+</li>
+<li>
+<p><strong>效果相当</strong>:</p>
+</li>
+<li>大量实验证明RMSNorm效果不输LayerNorm</li>
+<li>
+<p>在大模型中表现甚至更好</p>
+</li>
+<li>
+<p><strong>简化实现</strong>:</p>
+</li>
+<li>不需要β参数，减少了参数量</li>
+<li>数值稳定性更好</li>
+</ol>
+<p><strong>技术原理</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># LayerNorm需要计算均值和方差</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">mean</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">var</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">ln_out</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">var</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># RMSNorm只需要计算RMS</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">rms</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">rms_out</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">rms</span>
+</code></pre></div></p>
+<h3 id="q3-pre-normpost-norm">Q3: Pre-Norm和Post-Norm的位置区别？<a class="headerlink" href="#q3-pre-normpost-norm" title="Permanent link">&para;</a></h3>
+<p><strong>架构对比</strong>:</p>
+<p><strong>Post-Norm (原始)</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>x → Attention → (+) → LayerNorm → FFN → (+) → LayerNorm
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    ↑_______________|              ↑_______|
+</code></pre></div></p>
+<p><strong>Pre-Norm (现代)</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>x → LayerNorm → Attention → (+) → LayerNorm → FFN → (+)
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    ↑________________________|              ↑______|
+</code></pre></div></p>
+<p><strong>训练稳定性差异</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>方面</th>
+<th>Post-Norm</th>
+<th>Pre-Norm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>学习率warmup</strong></td>
+<td>必需</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>深层训练</strong></td>
+<td>容易失败</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><strong>梯度传播</strong></td>
+<td>可能不稳定</td>
+<td>更平滑</td>
+</tr>
+<tr>
+<td><strong>收敛速度</strong></td>
+<td>较慢</td>
+<td>较快</td>
+</tr>
+<tr>
+<td><strong>最终性能</strong></td>
+<td>浅层更好</td>
+<td>深层更优</td>
+</tr>
+</tbody>
+</table>
+<h3 id="q4-pre-norm">Q4: 为什么Pre-Norm训练更稳定？<a class="headerlink" href="#q4-pre-norm" title="Permanent link">&para;</a></h3>
+<p><strong>梯度传播分析</strong>:</p>
+<ol>
+<li><strong>Post-Norm问题</strong>:</li>
+<li>梯度需要经过LayerNorm的反向传播</li>
+<li>LayerNorm的导数可能放大或缩小梯度</li>
+<li>
+<p>深层网络容易出现梯度爆炸/消失</p>
+</li>
+<li>
+<p><strong>Pre-Norm优势</strong>:</p>
+</li>
+<li>提供了更强的恒等路径(identity path)</li>
+<li>梯度可以更直接地反向传播</li>
+<li>在深层网络中梯度的数量级为√L (L为层数)</li>
+</ol>
+<p><strong>数学直觉</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Post-Norm: 梯度需要穿过LayerNorm
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>∇L/∂x = ∇L/∂norm × ∂norm/∂x  (不稳定)
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Pre-Norm: 恒等路径更强  
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>∇L/∂x = ∇L/∂residual + ∇L/∂processed  (更稳定)
+</code></pre></div></p>
+<h2 id="_10">💻 代码实现<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="normpytorch">三种Norm的PyTorch实现<a class="headerlink" href="#normpytorch" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">BatchNorm1d</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;自实现BatchNorm&quot;&quot;&quot;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">):</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span> <span class="o">=</span> <span class="n">num_features</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">momentum</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>        <span class="c1"># 可学习参数</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>        <span class="c1"># 移动平均统计量</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;running_mean&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;running_var&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>        <span class="c1"># x shape: [batch_size, num_features]</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>            <span class="c1"># 计算当前batch的统计量</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>            <span class="n">batch_mean</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>            <span class="n">batch_var</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>            <span class="c1"># 更新移动平均</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">batch_mean</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">batch_var</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>            <span class="c1"># 使用当前batch统计量归一化</span>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>            <span class="n">mean</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">batch_mean</span><span class="p">,</span> <span class="n">batch_var</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>            <span class="c1"># 推理时使用移动平均</span>
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>            <span class="n">mean</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span>
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>        <span class="c1"># 归一化</span>
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>        <span class="n">x_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">x_norm</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span>
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a><span class="k">class</span><span class="w"> </span><span class="nc">LayerNorm</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;自实现LayerNorm&quot;&quot;&quot;</span>
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">normalized_shape</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">normalized_shape</span> <span class="o">=</span> <span class="n">normalized_shape</span>
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">normalized_shape</span><span class="p">))</span>
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">normalized_shape</span><span class="p">))</span>
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a>
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a>        <span class="c1"># 在最后一个维度计算统计量</span>
+<a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a>        <span class="n">mean</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a>        <span class="n">var</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a>
+<a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a>        <span class="c1"># 归一化</span>
+<a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a>        <span class="n">x_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
+<a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">x_norm</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span>
+<a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a>
+<a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a><span class="k">class</span><span class="w"> </span><span class="nc">RMSNorm</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;自实现RMSNorm&quot;&quot;&quot;</span>
+<a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">normalized_shape</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+<a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">normalized_shape</span> <span class="o">=</span> <span class="n">normalized_shape</span>
+<a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
+<a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a>
+<a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">normalized_shape</span><span class="p">))</span>
+<a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a>
+<a id="__codelineno-10-70" name="__codelineno-10-70" href="#__codelineno-10-70"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-10-71" name="__codelineno-10-71" href="#__codelineno-10-71"></a>        <span class="c1"># 计算RMS</span>
+<a id="__codelineno-10-72" name="__codelineno-10-72" href="#__codelineno-10-72"></a>        <span class="n">rms</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
+<a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a>
+<a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a>        <span class="c1"># RMS归一化</span>
+<a id="__codelineno-10-75" name="__codelineno-10-75" href="#__codelineno-10-75"></a>        <span class="n">x_norm</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">rms</span>
+<a id="__codelineno-10-76" name="__codelineno-10-76" href="#__codelineno-10-76"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">x_norm</span>
+<a id="__codelineno-10-77" name="__codelineno-10-77" href="#__codelineno-10-77"></a>
+<a id="__codelineno-10-78" name="__codelineno-10-78" href="#__codelineno-10-78"></a><span class="c1"># 使用示例和性能对比</span>
+<a id="__codelineno-10-79" name="__codelineno-10-79" href="#__codelineno-10-79"></a><span class="k">def</span><span class="w"> </span><span class="nf">compare_normalization</span><span class="p">():</span>
+<a id="__codelineno-10-80" name="__codelineno-10-80" href="#__codelineno-10-80"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;对比三种归一化的计算成本&quot;&quot;&quot;</span>
+<a id="__codelineno-10-81" name="__codelineno-10-81" href="#__codelineno-10-81"></a>
+<a id="__codelineno-10-82" name="__codelineno-10-82" href="#__codelineno-10-82"></a>    <span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">768</span>
+<a id="__codelineno-10-83" name="__codelineno-10-83" href="#__codelineno-10-83"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-84" name="__codelineno-10-84" href="#__codelineno-10-84"></a>
+<a id="__codelineno-10-85" name="__codelineno-10-85" href="#__codelineno-10-85"></a>    <span class="c1"># 初始化三种norm</span>
+<a id="__codelineno-10-86" name="__codelineno-10-86" href="#__codelineno-10-86"></a>    <span class="n">bn</span> <span class="o">=</span> <span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-87" name="__codelineno-10-87" href="#__codelineno-10-87"></a>    <span class="n">ln</span> <span class="o">=</span> <span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-88" name="__codelineno-10-88" href="#__codelineno-10-88"></a>    <span class="n">rms</span> <span class="o">=</span> <span class="n">RMSNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-89" name="__codelineno-10-89" href="#__codelineno-10-89"></a>
+<a id="__codelineno-10-90" name="__codelineno-10-90" href="#__codelineno-10-90"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== 归一化技术对比 ===&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-91" name="__codelineno-10-91" href="#__codelineno-10-91"></a>
+<a id="__codelineno-10-92" name="__codelineno-10-92" href="#__codelineno-10-92"></a>    <span class="c1"># 测试LayerNorm</span>
+<a id="__codelineno-10-93" name="__codelineno-10-93" href="#__codelineno-10-93"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-10-94" name="__codelineno-10-94" href="#__codelineno-10-94"></a>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-10-95" name="__codelineno-10-95" href="#__codelineno-10-95"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+<a id="__codelineno-10-96" name="__codelineno-10-96" href="#__codelineno-10-96"></a>        <span class="n">_</span> <span class="o">=</span> <span class="n">ln</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-10-97" name="__codelineno-10-97" href="#__codelineno-10-97"></a>    <span class="n">ln_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<a id="__codelineno-10-98" name="__codelineno-10-98" href="#__codelineno-10-98"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LayerNorm耗时: </span><span class="si">{</span><span class="n">ln_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">秒&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-99" name="__codelineno-10-99" href="#__codelineno-10-99"></a>
+<a id="__codelineno-10-100" name="__codelineno-10-100" href="#__codelineno-10-100"></a>    <span class="c1"># 测试RMSNorm</span>
+<a id="__codelineno-10-101" name="__codelineno-10-101" href="#__codelineno-10-101"></a>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-10-102" name="__codelineno-10-102" href="#__codelineno-10-102"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+<a id="__codelineno-10-103" name="__codelineno-10-103" href="#__codelineno-10-103"></a>        <span class="n">_</span> <span class="o">=</span> <span class="n">rms</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-10-104" name="__codelineno-10-104" href="#__codelineno-10-104"></a>    <span class="n">rms_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<a id="__codelineno-10-105" name="__codelineno-10-105" href="#__codelineno-10-105"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSNorm耗时: </span><span class="si">{</span><span class="n">rms_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">秒&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-106" name="__codelineno-10-106" href="#__codelineno-10-106"></a>
+<a id="__codelineno-10-107" name="__codelineno-10-107" href="#__codelineno-10-107"></a>    <span class="n">speedup</span> <span class="o">=</span> <span class="n">ln_time</span> <span class="o">/</span> <span class="n">rms_time</span>
+<a id="__codelineno-10-108" name="__codelineno-10-108" href="#__codelineno-10-108"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSNorm加速倍数: </span><span class="si">{</span><span class="n">speedup</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-109" name="__codelineno-10-109" href="#__codelineno-10-109"></a>
+<a id="__codelineno-10-110" name="__codelineno-10-110" href="#__codelineno-10-110"></a>    <span class="c1"># 参数量对比</span>
+<a id="__codelineno-10-111" name="__codelineno-10-111" href="#__codelineno-10-111"></a>    <span class="n">ln_params</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ln</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+<a id="__codelineno-10-112" name="__codelineno-10-112" href="#__codelineno-10-112"></a>    <span class="n">rms_params</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">rms</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+<a id="__codelineno-10-113" name="__codelineno-10-113" href="#__codelineno-10-113"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LayerNorm参数量: </span><span class="si">{</span><span class="n">ln_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-114" name="__codelineno-10-114" href="#__codelineno-10-114"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSNorm参数量: </span><span class="si">{</span><span class="n">rms_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-115" name="__codelineno-10-115" href="#__codelineno-10-115"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;参数减少: </span><span class="si">{</span><span class="p">(</span><span class="n">ln_params</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">rms_params</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ln_params</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-116" name="__codelineno-10-116" href="#__codelineno-10-116"></a>
+<a id="__codelineno-10-117" name="__codelineno-10-117" href="#__codelineno-10-117"></a><span class="c1"># Pre-Norm vs Post-Norm实现</span>
+<a id="__codelineno-10-118" name="__codelineno-10-118" href="#__codelineno-10-118"></a><span class="k">class</span><span class="w"> </span><span class="nc">PostNormBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-10-119" name="__codelineno-10-119" href="#__codelineno-10-119"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Post-Norm Transformer Block&quot;&quot;&quot;</span>
+<a id="__codelineno-10-120" name="__codelineno-10-120" href="#__codelineno-10-120"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">):</span>
+<a id="__codelineno-10-121" name="__codelineno-10-121" href="#__codelineno-10-121"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-10-122" name="__codelineno-10-122" href="#__codelineno-10-122"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">attention</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MultiheadAttention</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-10-123" name="__codelineno-10-123" href="#__codelineno-10-123"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ffn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+<a id="__codelineno-10-124" name="__codelineno-10-124" href="#__codelineno-10-124"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">d_model</span><span class="p">),</span>
+<a id="__codelineno-10-125" name="__codelineno-10-125" href="#__codelineno-10-125"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+<a id="__codelineno-10-126" name="__codelineno-10-126" href="#__codelineno-10-126"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-127" name="__codelineno-10-127" href="#__codelineno-10-127"></a>        <span class="p">)</span>
+<a id="__codelineno-10-128" name="__codelineno-10-128" href="#__codelineno-10-128"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">norm1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-129" name="__codelineno-10-129" href="#__codelineno-10-129"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">norm2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-130" name="__codelineno-10-130" href="#__codelineno-10-130"></a>
+<a id="__codelineno-10-131" name="__codelineno-10-131" href="#__codelineno-10-131"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-10-132" name="__codelineno-10-132" href="#__codelineno-10-132"></a>        <span class="c1"># Post-Norm: Attention → Add → Norm</span>
+<a id="__codelineno-10-133" name="__codelineno-10-133" href="#__codelineno-10-133"></a>        <span class="n">attn_out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-10-134" name="__codelineno-10-134" href="#__codelineno-10-134"></a>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm1</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">attn_out</span><span class="p">)</span>
+<a id="__codelineno-10-135" name="__codelineno-10-135" href="#__codelineno-10-135"></a>
+<a id="__codelineno-10-136" name="__codelineno-10-136" href="#__codelineno-10-136"></a>        <span class="c1"># FFN → Add → Norm</span>
+<a id="__codelineno-10-137" name="__codelineno-10-137" href="#__codelineno-10-137"></a>        <span class="n">ffn_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ffn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-10-138" name="__codelineno-10-138" href="#__codelineno-10-138"></a>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm2</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">ffn_out</span><span class="p">)</span>
+<a id="__codelineno-10-139" name="__codelineno-10-139" href="#__codelineno-10-139"></a>        <span class="k">return</span> <span class="n">x</span>
+<a id="__codelineno-10-140" name="__codelineno-10-140" href="#__codelineno-10-140"></a>
+<a id="__codelineno-10-141" name="__codelineno-10-141" href="#__codelineno-10-141"></a><span class="k">class</span><span class="w"> </span><span class="nc">PreNormBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-10-142" name="__codelineno-10-142" href="#__codelineno-10-142"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Pre-Norm Transformer Block&quot;&quot;&quot;</span>
+<a id="__codelineno-10-143" name="__codelineno-10-143" href="#__codelineno-10-143"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">):</span>
+<a id="__codelineno-10-144" name="__codelineno-10-144" href="#__codelineno-10-144"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-10-145" name="__codelineno-10-145" href="#__codelineno-10-145"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">attention</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MultiheadAttention</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-10-146" name="__codelineno-10-146" href="#__codelineno-10-146"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ffn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+<a id="__codelineno-10-147" name="__codelineno-10-147" href="#__codelineno-10-147"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">d_model</span><span class="p">),</span>
+<a id="__codelineno-10-148" name="__codelineno-10-148" href="#__codelineno-10-148"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+<a id="__codelineno-10-149" name="__codelineno-10-149" href="#__codelineno-10-149"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-150" name="__codelineno-10-150" href="#__codelineno-10-150"></a>        <span class="p">)</span>
+<a id="__codelineno-10-151" name="__codelineno-10-151" href="#__codelineno-10-151"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">norm1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-152" name="__codelineno-10-152" href="#__codelineno-10-152"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">norm2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-10-153" name="__codelineno-10-153" href="#__codelineno-10-153"></a>
+<a id="__codelineno-10-154" name="__codelineno-10-154" href="#__codelineno-10-154"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-10-155" name="__codelineno-10-155" href="#__codelineno-10-155"></a>        <span class="c1"># Pre-Norm: Norm → Attention → Add</span>
+<a id="__codelineno-10-156" name="__codelineno-10-156" href="#__codelineno-10-156"></a>        <span class="n">norm_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-10-157" name="__codelineno-10-157" href="#__codelineno-10-157"></a>        <span class="n">attn_out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="n">norm_x</span><span class="p">,</span> <span class="n">norm_x</span><span class="p">,</span> <span class="n">norm_x</span><span class="p">)</span>
+<a id="__codelineno-10-158" name="__codelineno-10-158" href="#__codelineno-10-158"></a>        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">attn_out</span>
+<a id="__codelineno-10-159" name="__codelineno-10-159" href="#__codelineno-10-159"></a>
+<a id="__codelineno-10-160" name="__codelineno-10-160" href="#__codelineno-10-160"></a>        <span class="c1"># Norm → FFN → Add</span>
+<a id="__codelineno-10-161" name="__codelineno-10-161" href="#__codelineno-10-161"></a>        <span class="n">norm_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-10-162" name="__codelineno-10-162" href="#__codelineno-10-162"></a>        <span class="n">ffn_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ffn</span><span class="p">(</span><span class="n">norm_x</span><span class="p">)</span>
+<a id="__codelineno-10-163" name="__codelineno-10-163" href="#__codelineno-10-163"></a>        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">ffn_out</span>
+<a id="__codelineno-10-164" name="__codelineno-10-164" href="#__codelineno-10-164"></a>        <span class="k">return</span> <span class="n">x</span>
+<a id="__codelineno-10-165" name="__codelineno-10-165" href="#__codelineno-10-165"></a>
+<a id="__codelineno-10-166" name="__codelineno-10-166" href="#__codelineno-10-166"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-10-167" name="__codelineno-10-167" href="#__codelineno-10-167"></a>    <span class="n">compare_normalization</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="_11">✅ 学习检验<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[ ] 理解三种归一化的数学原理和计算方式</li>
+<li>[ ] 能解释为什么Transformer选择LayerNorm而非BatchNorm</li>
+<li>[ ] 掌握Pre-Norm相比Post-Norm的训练优势</li>
+<li>[ ] 完成归一化技术的代码实现和性能对比</li>
+</ul>
+<h2 id="_12">🔗 相关链接<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../kv-cache/">上一节：KV Cache技术</a></li>
+<li><a href="../positional-encoding/">下一节：位置编码</a></li>
+<li><a href="../">返回：Attention升级概览</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

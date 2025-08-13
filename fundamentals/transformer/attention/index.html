@@ -10,24 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://jamesbriand.github.io/llm-self-learning/reference/markdown/">
+        <link rel="canonical" href="https://jamesbriand.github.io/llm-self-learning/fundamentals/transformer/attention/">
       
       
+        <link rel="prev" href="../">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+        <link rel="next" href="../language-models/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
-        <title>Markdown 语法参考 - LLM 自学指南</title>
+        <title>Attention机制 - LLM 自学指南</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#markdown" class="md-skip">
+        <a href="#attention" class="md-skip">
           跳转至
         </a>
       
@@ -88,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="LLM 自学指南" class="md-header__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
+    <a href="../../.." title="LLM 自学指南" class="md-header__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Markdown 语法参考
+              Attention机制
             
           </span>
         </div>
@@ -219,7 +223,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="LLM 自学指南" class="md-nav__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
+    <a href="../../.." title="LLM 自学指南" class="md-nav__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -237,7 +241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -259,7 +263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/" class="md-nav__link">
+      <a href="../../../getting-started/" class="md-nav__link">
         
   
   
@@ -278,18 +282,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -305,7 +311,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             模型基础
@@ -316,18 +322,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -343,7 +351,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             第1节 Transformer基础
@@ -357,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -377,10 +385,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/attention/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Attention机制
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -391,6 +421,212 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 本节目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 阅读材料
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 阅读材料">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      必读文章
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      原论文
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎬 视频材料
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 知识总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 知识总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Attention计算公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-head-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Head Attention
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 面试问题解答
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💬 面试问题解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1: Attention计算公式是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-d_k" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1.1: 为什么要除以根号d_k？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1.2: Softmax的作用是什么？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-self-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习1: 实现Self-Attention机制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-multi-head-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习2: 实现Multi-Head Attention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码模板
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 学习检验
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关链接
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -403,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/language-models/" class="md-nav__link">
+      <a href="../language-models/" class="md-nav__link">
         
   
   
@@ -472,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/" class="md-nav__link">
+      <a href="../../attention-advanced/" class="md-nav__link">
         
   
   
@@ -495,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/mha-variants/" class="md-nav__link">
+      <a href="../../attention-advanced/mha-variants/" class="md-nav__link">
         
   
   
@@ -518,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/kv-cache/" class="md-nav__link">
+      <a href="../../attention-advanced/kv-cache/" class="md-nav__link">
         
   
   
@@ -541,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/normalization/" class="md-nav__link">
+      <a href="../../attention-advanced/normalization/" class="md-nav__link">
         
   
   
@@ -564,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/positional-encoding/" class="md-nav__link">
+      <a href="../../attention-advanced/positional-encoding/" class="md-nav__link">
         
   
   
@@ -633,7 +869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/" class="md-nav__link">
+      <a href="../../llm-advanced/" class="md-nav__link">
         
   
   
@@ -656,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/moe/" class="md-nav__link">
+      <a href="../../llm-advanced/moe/" class="md-nav__link">
         
   
   
@@ -679,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/distributed/" class="md-nav__link">
+      <a href="../../llm-advanced/distributed/" class="md-nav__link">
         
   
   
@@ -793,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/context-engineering/" class="md-nav__link">
+      <a href="../../../applications/context-engineering/" class="md-nav__link">
         
   
   
@@ -816,7 +1052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/context-engineering/practices/" class="md-nav__link">
+      <a href="../../../applications/context-engineering/practices/" class="md-nav__link">
         
   
   
@@ -885,7 +1121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/" class="md-nav__link">
         
   
   
@@ -908,7 +1144,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/rag/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/rag/" class="md-nav__link">
         
   
   
@@ -931,7 +1167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/agent/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/agent/" class="md-nav__link">
         
   
   
@@ -1000,7 +1236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/" class="md-nav__link">
         
   
   
@@ -1023,7 +1259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/cot/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/cot/" class="md-nav__link">
         
   
   
@@ -1046,7 +1282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/langchain/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/langchain/" class="md-nav__link">
         
   
   
@@ -1069,7 +1305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/evaluation/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/evaluation/" class="md-nav__link">
         
   
   
@@ -1107,7 +1343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../interview/" class="md-nav__link">
+      <a href="../../../interview/" class="md-nav__link">
         
   
   
@@ -1129,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../code-examples/" class="md-nav__link">
+      <a href="../../../code-examples/" class="md-nav__link">
         
   
   
@@ -1173,26 +1409,26 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      基础语法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="基础语法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      标题
+      🎯 本节目标
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 阅读材料
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 阅读材料">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      文本样式
+      必读文章
     </span>
   </a>
   
@@ -1201,100 +1437,49 @@
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      列表
+      原论文
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="列表">
-      <ul class="md-nav__list">
+</li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      无序列表
+      🎬 视频材料
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      有序列表
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      链接和图片
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      表格
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      扩展语法
+      📝 知识总结
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="扩展语法">
+    <nav class="md-nav" aria-label="📝 知识总结">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#self-attention" class="md-nav__link">
     <span class="md-ellipsis">
-      代码块
+      Self-Attention计算公式
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#multi-head-attention" class="md-nav__link">
     <span class="md-ellipsis">
-      告示框（需要扩展）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      任务列表
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      脚注
+      Multi-Head Attention
     </span>
   </a>
   
@@ -1306,9 +1491,102 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      最佳实践
+      💬 面试问题解答
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💬 面试问题解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1: Attention计算公式是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-d_k" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1.1: 为什么要除以根号d_k？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1.2: Softmax的作用是什么？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-self-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习1: 实现Self-Attention机制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-multi-head-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习2: 实现Multi-Head Attention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码模板
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 学习检验
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关链接
     </span>
   </a>
   
@@ -1330,114 +1608,107 @@
 
 
 
-<h1 id="markdown">Markdown 语法参考<a class="headerlink" href="#markdown" title="Permanent link">&para;</a></h1>
-<p>完整的 Markdown 语法参考指南。</p>
-<h2 id="_1">基础语法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="_2">标题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gh"># H1 标题</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gu">## H2 标题</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gu">### H3 标题</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gu">#### H4 标题</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gu">##### H5 标题</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="gu">###### H6 标题</span>
-</code></pre></div>
-<h3 id="_3">文本样式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>样式</th>
-<th>语法</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>粗体</td>
-<td><code>**文本**</code> 或 <code>__文本__</code></td>
-<td><strong>粗体文本</strong></td>
-</tr>
-<tr>
-<td>斜体</td>
-<td><code>*文本*</code> 或 <code>_文本_</code></td>
-<td><em>斜体文本</em></td>
-</tr>
-<tr>
-<td>删除线</td>
-<td><code>~~文本~~</code></td>
-<td>~~删除线文本~~</td>
-</tr>
-<tr>
-<td>行内代码</td>
-<td><code>`代码`</code></td>
-<td><code>代码</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">列表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<h4 id="_5">无序列表<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">-</span><span class="w"> </span>项目 1
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">-</span><span class="w"> </span>项目 2
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>子项目 2.1
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>子项目 2.2
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">-</span><span class="w"> </span>项目 3
-</code></pre></div>
-<h4 id="_6">有序列表<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">1.</span> 第一项
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">2.</span> 第二项
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">   </span><span class="k">1.</span> 子项目 2.1
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">   </span><span class="k">2.</span> 子项目 2.2
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">3.</span> 第三项
-</code></pre></div>
-<h3 id="_7">链接和图片<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[<span class="nt">链接文本</span>](<span class="na">https://example.com</span>)
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>[<span class="nt">内部链接</span>](<span class="na">../index.md</span>)
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>![<span class="nt">图片描述</span>](<span class="na">image.png</span>)
-</code></pre></div>
-<h3 id="_8">表格<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>| 表头1 | 表头2 | 表头3 |
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>|-------|-------|-------|
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>| 单元格1 | 单元格2 | 单元格3 |
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>| 单元格4 | 单元格5 | 单元格6 |
-</code></pre></div>
-<h2 id="_9">扩展语法<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<h3 id="_10">代码块<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="sb">```python</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="sb">```</span>
-</code></pre></div>
-<h3 id="_11">告示框（需要扩展）<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>!!! note &quot;注释&quot;
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    这是一个注释框。
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>!!! tip &quot;提示&quot;
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    这是一个提示框。
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>!!! warning &quot;警告&quot;
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    这是一个警告框。
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>!!! danger &quot;危险&quot;
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    这是一个危险警告框。
-</code></pre></div>
-<h3 id="_12">任务列表<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">- [x]</span> 已完成的任务
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">- [ ]</span> 未完成的任务
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">- [ ]</span> 另一个未完成的任务
-</code></pre></div>
-<h3 id="_13">脚注<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>这里有一个脚注引用[^1]。
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>[<span class="nl">^1</span>]: <span class="na">这是脚注内容。</span>
-</code></pre></div>
-<h2 id="_14">最佳实践<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h1 id="attention">Attention机制<a class="headerlink" href="#attention" title="Permanent link">&para;</a></h1>
+<h2 id="_1">🎯 本节目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>深入理解Self-Attention机制的数学原理和计算过程，掌握面试中的高频问题。</p>
+<h2 id="_2">📖 阅读材料<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">必读文章<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>使用描述性标题</strong> - 让读者快速了解内容</li>
-<li><strong>保持一致的格式</strong> - 统一的样式让文档更专业</li>
-<li><strong>适度使用格式</strong> - 过多的格式会影响可读性</li>
-<li><strong>添加目录链接</strong> - 帮助用户快速导航</li>
+<li><a href="https://kexue.fm/archives/4765/comment-page-1#comments">《Attention is All You Need》浅读（简介+代码）</a> - 科学空间</li>
+<li><a href="https://www.zhihu.com/tardis/zm/art/607605399?source_id=1003">GPT与BERT差别深入解析</a> - 知乎</li>
+<li><a href="https://www.zhihu.com/question/471328838/answer/51545078376">深入浅出理解transformer</a> - 知乎  </li>
+<li><a href="https://zhuanlan.zhihu.com/p/338817680">Transformer模型详解（图解最完整版）</a> - 知乎</li>
+<li><a href="https://zhuanlan.zhihu.com/p/631363482">Transformer位置编码（基础）</a> - 知乎</li>
 </ol>
-<p>!!! tip "编写技巧"
-    定期预览您的文档，确保格式正确渲染。</p>
+<h3 id="_4">原论文<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a> - 经典必读</li>
+</ul>
+<h2 id="_5">🎬 视频材料<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>学习建议：</strong> 倍速观看，重点理解概念而非细节</p>
+</blockquote>
+<ol>
+<li><a href="https://www.bilibili.com/video/BV1AF411b7xQ?spm_id_from=333.788.videopod.sections&amp;vd_source=a5dd5ad68f590473458dad8b99349b27">GPT，GPT-2，GPT-3 论文精读</a> - 哔哩哔哩</li>
+<li><a href="https://www.bilibili.com/video/BV1Q4421Z7Tj/?spm_id_from=333.1387.search.video_card.click&amp;vd_source=a5dd5ad68f590473458dad8b99349b27">Llama 3.1论文精读</a> - 哔哩哔哩</li>
+</ol>
+<h2 id="_6">📝 知识总结<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="self-attention">Self-Attention计算公式<a class="headerlink" href="#self-attention" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V
+</code></pre></div>
+<p><strong>核心组件:</strong>
+- <strong>Query (Q)</strong>: 查询向量，决定当前位置关注什么
+- <strong>Key (K)</strong>: 键向量，被查询的内容
+- <strong>Value (V)</strong>: 值向量，实际传递的信息
+- <strong>缩放因子</strong>: $\sqrt{d_k}$，防止softmax梯度消失</p>
+<h3 id="multi-head-attention">Multi-Head Attention<a class="headerlink" href="#multi-head-attention" title="Permanent link">&para;</a></h3>
+<p>将输入投影到多个不同的子空间，并行计算多个注意力头：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>MultiHead(Q,K,V) = Concat(head_1, ..., head_h)W^O
+</code></pre></div>
+<p>其中 $head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)$</p>
+<h2 id="_7">💬 面试问题解答<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="q1-attention">Q1: Attention计算公式是什么？<a class="headerlink" href="#q1-attention" title="Permanent link">&para;</a></h3>
+<p><strong>标准回答：</strong>
+Self-Attention的核心公式是 <code>Attention(Q,K,V) = softmax(QK^T/√d_k)V</code>。</p>
+<p><strong>详细解释：</strong>
+1. 先计算Query和Key的点积得到注意力分数
+2. 除以√d_k进行缩放
+3. 通过softmax归一化得到注意力权重
+4. 最后与Value相乘得到输出</p>
+<h3 id="q11-d_k">Q1.1: 为什么要除以根号d_k？<a class="headerlink" href="#q11-d_k" title="Permanent link">&para;</a></h3>
+<p><strong>核心原因：</strong> 防止softmax函数进入饱和区导致梯度消失。</p>
+<p><strong>技术解释：</strong>
+- 当d_k较大时，QK^T的方差会很大
+- 大的数值经过softmax后梯度接近0
+- 除以√d_k可以控制方差为1，保持梯度稳定</p>
+<h3 id="q12-softmax">Q1.2: Softmax的作用是什么？<a class="headerlink" href="#q12-softmax" title="Permanent link">&para;</a></h3>
+<p><strong>主要作用：</strong>
+1. <strong>归一化</strong>: 确保注意力权重之和为1
+2. <strong>突出重点</strong>: 通过指数函数放大重要特征
+3. <strong>可微分</strong>: 保证反向传播可以正常进行</p>
+<h2 id="_8">💻 代码实现<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="1-self-attention">练习1: 实现Self-Attention机制<a class="headerlink" href="#1-self-attention" title="Permanent link">&para;</a></h3>
+<p><strong>平台</strong>: <a href="https://www.deep-ml.com/problems/53">Deep-ML Self-Attention</a></p>
+<h3 id="2-multi-head-attention">练习2: 实现Multi-Head Attention<a class="headerlink" href="#2-multi-head-attention" title="Permanent link">&para;</a></h3>
+<p><strong>平台</strong>: <a href="https://www.deep-ml.com/problems/94">Deep-ML Multi-Head Attention</a></p>
+<h3 id="_9">代码模板<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">SelfAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">n_heads</span><span class="p">):</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_heads</span> <span class="o">=</span> <span class="n">n_heads</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span> <span class="o">=</span> <span class="n">d_model</span> <span class="o">//</span> <span class="n">n_heads</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">W_q</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">W_k</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">W_v</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">W_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">scaled_dot_product_attention</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="c1"># TODO: 实现注意力计算</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="k">pass</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        <span class="c1"># TODO: 实现完整的前向传播</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        <span class="k">pass</span>
+</code></pre></div>
+<h2 id="_10">✅ 学习检验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>完成以下检验才算掌握本节：</p>
+<ul>
+<li>[ ] 能画出Self-Attention的计算流程图</li>
+<li>[ ] 可以手算简单的Attention权重</li>
+<li>[ ] 完成Deep-ML平台的两个编程练习</li>
+<li>[ ] 面试问题能用自己的话流利回答</li>
+</ul>
+<h2 id="_11">🔗 相关链接<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../language-models/">下一节：语言模型架构</a></li>
+<li><a href="../">返回：Transformer基础概览</a></li>
+</ul>
 
 
 
@@ -1492,10 +1763,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>

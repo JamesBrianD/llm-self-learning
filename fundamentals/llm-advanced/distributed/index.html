@@ -10,24 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://jamesbriand.github.io/llm-self-learning/reference/markdown/">
+        <link rel="canonical" href="https://jamesbriand.github.io/llm-self-learning/fundamentals/llm-advanced/distributed/">
       
       
+        <link rel="prev" href="../moe/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+        <link rel="next" href="../../../applications/context-engineering/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
-        <title>Markdown 语法参考 - LLM 自学指南</title>
+        <title>分布式训练 - LLM 自学指南</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#markdown" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -88,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="LLM 自学指南" class="md-header__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
+    <a href="../../.." title="LLM 自学指南" class="md-header__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Markdown 语法参考
+              分布式训练
             
           </span>
         </div>
@@ -219,7 +223,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="LLM 自学指南" class="md-nav__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
+    <a href="../../.." title="LLM 自学指南" class="md-nav__button md-logo" aria-label="LLM 自学指南" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -237,7 +241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -259,7 +263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/" class="md-nav__link">
+      <a href="../../../getting-started/" class="md-nav__link">
         
   
   
@@ -278,18 +282,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -305,7 +311,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             模型基础
@@ -357,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/" class="md-nav__link">
+      <a href="../../transformer/" class="md-nav__link">
         
   
   
@@ -380,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/attention/" class="md-nav__link">
+      <a href="../../transformer/attention/" class="md-nav__link">
         
   
   
@@ -403,7 +409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/transformer/language-models/" class="md-nav__link">
+      <a href="../../transformer/language-models/" class="md-nav__link">
         
   
   
@@ -472,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/" class="md-nav__link">
+      <a href="../../attention-advanced/" class="md-nav__link">
         
   
   
@@ -495,7 +501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/mha-variants/" class="md-nav__link">
+      <a href="../../attention-advanced/mha-variants/" class="md-nav__link">
         
   
   
@@ -518,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/kv-cache/" class="md-nav__link">
+      <a href="../../attention-advanced/kv-cache/" class="md-nav__link">
         
   
   
@@ -541,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/normalization/" class="md-nav__link">
+      <a href="../../attention-advanced/normalization/" class="md-nav__link">
         
   
   
@@ -564,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/attention-advanced/positional-encoding/" class="md-nav__link">
+      <a href="../../attention-advanced/positional-encoding/" class="md-nav__link">
         
   
   
@@ -592,18 +598,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -619,7 +627,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             第3节 LLM升级技术
@@ -633,7 +641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -656,7 +664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/moe/" class="md-nav__link">
+      <a href="../moe/" class="md-nav__link">
         
   
   
@@ -676,10 +684,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../fundamentals/llm-advanced/distributed/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    分布式训练
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -690,6 +720,110 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 本节目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 知识总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 知识总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要并行策略
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      工程挑战
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 面试问题解答
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💬 面试问题解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1: 分布式训练有哪些主要策略？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 学习检验
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关链接
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -793,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/context-engineering/" class="md-nav__link">
+      <a href="../../../applications/context-engineering/" class="md-nav__link">
         
   
   
@@ -816,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/context-engineering/practices/" class="md-nav__link">
+      <a href="../../../applications/context-engineering/practices/" class="md-nav__link">
         
   
   
@@ -885,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/" class="md-nav__link">
         
   
   
@@ -908,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/rag/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/rag/" class="md-nav__link">
         
   
   
@@ -931,7 +1065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/rag-agent/agent/" class="md-nav__link">
+      <a href="../../../applications/rag-agent/agent/" class="md-nav__link">
         
   
   
@@ -1000,7 +1134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/" class="md-nav__link">
         
   
   
@@ -1023,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/cot/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/cot/" class="md-nav__link">
         
   
   
@@ -1046,7 +1180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/langchain/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/langchain/" class="md-nav__link">
         
   
   
@@ -1069,7 +1203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/cot-evaluation/evaluation/" class="md-nav__link">
+      <a href="../../../applications/cot-evaluation/evaluation/" class="md-nav__link">
         
   
   
@@ -1107,7 +1241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../interview/" class="md-nav__link">
+      <a href="../../../interview/" class="md-nav__link">
         
   
   
@@ -1129,7 +1263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../code-examples/" class="md-nav__link">
+      <a href="../../../code-examples/" class="md-nav__link">
         
   
   
@@ -1171,79 +1305,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      基础语法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="基础语法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      标题
+      🎯 本节目标
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      文本样式
+      📝 知识总结
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="📝 知识总结">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      列表
+      主要并行策略
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="列表">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      无序列表
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      有序列表
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      链接和图片
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      表格
+      工程挑战
     </span>
   </a>
   
@@ -1255,46 +1347,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      扩展语法
+      💬 面试问题解答
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="扩展语法">
+    <nav class="md-nav" aria-label="💬 面试问题解答">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#q1" class="md-nav__link">
     <span class="md-ellipsis">
-      代码块
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      告示框（需要扩展）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      任务列表
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      脚注
+      Q1: 分布式训练有哪些主要策略？
     </span>
   </a>
   
@@ -1306,9 +1371,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      最佳实践
+      ✅ 学习检验
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关链接
     </span>
   </a>
   
@@ -1330,114 +1404,39 @@
 
 
 
-<h1 id="markdown">Markdown 语法参考<a class="headerlink" href="#markdown" title="Permanent link">&para;</a></h1>
-<p>完整的 Markdown 语法参考指南。</p>
-<h2 id="_1">基础语法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="_2">标题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gh"># H1 标题</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gu">## H2 标题</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gu">### H3 标题</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gu">#### H4 标题</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gu">##### H5 标题</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="gu">###### H6 标题</span>
-</code></pre></div>
-<h3 id="_3">文本样式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>样式</th>
-<th>语法</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>粗体</td>
-<td><code>**文本**</code> 或 <code>__文本__</code></td>
-<td><strong>粗体文本</strong></td>
-</tr>
-<tr>
-<td>斜体</td>
-<td><code>*文本*</code> 或 <code>_文本_</code></td>
-<td><em>斜体文本</em></td>
-</tr>
-<tr>
-<td>删除线</td>
-<td><code>~~文本~~</code></td>
-<td>~~删除线文本~~</td>
-</tr>
-<tr>
-<td>行内代码</td>
-<td><code>`代码`</code></td>
-<td><code>代码</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">列表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<h4 id="_5">无序列表<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">-</span><span class="w"> </span>项目 1
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">-</span><span class="w"> </span>项目 2
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>子项目 2.1
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>子项目 2.2
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">-</span><span class="w"> </span>项目 3
-</code></pre></div>
-<h4 id="_6">有序列表<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">1.</span> 第一项
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">2.</span> 第二项
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">   </span><span class="k">1.</span> 子项目 2.1
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">   </span><span class="k">2.</span> 子项目 2.2
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">3.</span> 第三项
-</code></pre></div>
-<h3 id="_7">链接和图片<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[<span class="nt">链接文本</span>](<span class="na">https://example.com</span>)
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>[<span class="nt">内部链接</span>](<span class="na">../index.md</span>)
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>![<span class="nt">图片描述</span>](<span class="na">image.png</span>)
-</code></pre></div>
-<h3 id="_8">表格<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>| 表头1 | 表头2 | 表头3 |
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>|-------|-------|-------|
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>| 单元格1 | 单元格2 | 单元格3 |
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>| 单元格4 | 单元格5 | 单元格6 |
-</code></pre></div>
-<h2 id="_9">扩展语法<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<h3 id="_10">代码块<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="sb">```python</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="sb">```</span>
-</code></pre></div>
-<h3 id="_11">告示框（需要扩展）<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>!!! note &quot;注释&quot;
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    这是一个注释框。
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>!!! tip &quot;提示&quot;
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    这是一个提示框。
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>!!! warning &quot;警告&quot;
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    这是一个警告框。
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>!!! danger &quot;危险&quot;
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    这是一个危险警告框。
-</code></pre></div>
-<h3 id="_12">任务列表<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">- [x]</span> 已完成的任务
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">- [ ]</span> 未完成的任务
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">- [ ]</span> 另一个未完成的任务
-</code></pre></div>
-<h3 id="_13">脚注<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>这里有一个脚注引用[^1]。
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>[<span class="nl">^1</span>]: <span class="na">这是脚注内容。</span>
-</code></pre></div>
-<h2 id="_14">最佳实践<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h1 id="_1">分布式训练<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">🎯 本节目标<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>了解大模型分布式训练的基本策略和概念。</p>
+<h2 id="_3">📝 知识总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">主要并行策略<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>使用描述性标题</strong> - 让读者快速了解内容</li>
-<li><strong>保持一致的格式</strong> - 统一的样式让文档更专业</li>
-<li><strong>适度使用格式</strong> - 过多的格式会影响可读性</li>
-<li><strong>添加目录链接</strong> - 帮助用户快速导航</li>
+<li><strong>数据并行</strong>: 不同设备处理不同的数据批次</li>
+<li><strong>模型并行</strong>: 将模型参数分布到不同设备</li>
+<li><strong>流水线并行</strong>: 将模型层分布到不同设备，形成流水线</li>
 </ol>
-<p>!!! tip "编写技巧"
-    定期预览您的文档，确保格式正确渲染。</p>
+<h3 id="_5">工程挑战<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>通信开销优化</li>
+<li>内存管理</li>
+<li>负载均衡</li>
+</ul>
+<h2 id="_6">💬 面试问题解答<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="q1">Q1: 分布式训练有哪些主要策略？<a class="headerlink" href="#q1" title="Permanent link">&para;</a></h3>
+<p><strong>核心策略</strong>:
+- <strong>数据并行</strong>: 简单但通信开销大
+- <strong>模型并行</strong>: 适合超大模型
+- <strong>混合并行</strong>: 结合多种策略的现代方案</p>
+<h2 id="_7">✅ 学习检验<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[ ] 了解基本的并行训练概念</li>
+<li>[ ] 理解分布式训练的主要挑战</li>
+</ul>
+<h2 id="_8">🔗 相关链接<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../moe/">上一节：MOE架构</a></li>
+<li><a href="../../../applications/context-engineering/">下一节：Context Engineering</a></li>
+<li><a href="../">返回：LLM升级技术概览</a></li>
+</ul>
 
 
 
@@ -1492,10 +1491,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>
