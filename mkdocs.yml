@@ -4,12 +4,37 @@ site_url: https://jamesbriand.github.io/llm-self-learning/
 
 nav:
   - 首页: index.md
-  - 入门指南:
-    - getting-started/index.md
-  - 教程:
-    - 编写第一篇文档: tutorials/first-document.md
-  - 参考文档:
-    - Markdown 语法: reference/markdown.md
+  - 学习指南: getting-started/index.md
+  - 模型基础:
+    - 第1节 Transformer基础: 
+      - 学习概览: fundamentals/transformer/index.md
+      - Attention机制: fundamentals/transformer/attention.md
+      - 语言模型架构: fundamentals/transformer/language-models.md
+    - 第2节 Attention升级:
+      - 学习概览: fundamentals/attention-advanced/index.md
+      - 多头注意力变体: fundamentals/attention-advanced/mha-variants.md
+      - KV Cache技术: fundamentals/attention-advanced/kv-cache.md
+      - 归一化技术: fundamentals/attention-advanced/normalization.md
+      - 位置编码: fundamentals/attention-advanced/positional-encoding.md
+    - 第3节 LLM升级技术:
+      - 学习概览: fundamentals/llm-advanced/index.md
+      - MOE架构: fundamentals/llm-advanced/moe.md
+      - 分布式训练: fundamentals/llm-advanced/distributed.md
+  - 大模型应用:
+    - 第4节 Context Engineering:
+      - 学习概览: applications/context-engineering/index.md
+      - 上下文工程实践: applications/context-engineering/practices.md
+    - 第5节 RAG与Agent:
+      - 学习概览: applications/rag-agent/index.md
+      - RAG技术: applications/rag-agent/rag.md
+      - AI Agent: applications/rag-agent/agent.md
+    - 第6节 CoT与评测:
+      - 学习概览: applications/cot-evaluation/index.md
+      - 思维链技术: applications/cot-evaluation/cot.md
+      - LangChain框架: applications/cot-evaluation/langchain.md
+      - 模型评测: applications/cot-evaluation/evaluation.md
+  - 面试题库: interview/index.md
+  - 代码实现: code-examples/index.md
 
 theme:
   name: material

@@ -1,5 +1,10 @@
 # Claude Memory
 
+## Claude Prompt
+
+### Web Search
+- If the keyword is in Chinese, please web - search it in both Chinese and English
+
 ## Project Conventions
 
 ### Git Commit Messages
