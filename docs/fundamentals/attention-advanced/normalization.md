@@ -27,9 +27,7 @@
 ### 数学公式详解
 
 #### 1. Batch Normalization
-```math
-BN(x) = γ × \frac{x - μ_B}{\sqrt{σ_B^2 + ε}} + β
-```
+$$BN(x) = γ × \frac{x - μ_B}{\sqrt{σ_B^2 + ε}} + β$$
 
 **核心特点**:
 - μ_B, σ_B: 在batch维度计算均值和方差
@@ -42,9 +40,7 @@ BN(x) = γ × \frac{x - μ_B}{\sqrt{σ_B^2 + ε}} + β
 - 在序列模型中效果不佳
 
 #### 2. Layer Normalization  
-```math
-LN(x) = γ × \frac{x - μ_L}{\sqrt{σ_L^2 + ε}} + β
-```
+$$LN(x) = γ × \frac{x - μ_L}{\sqrt{σ_L^2 + ε}} + β$$
 
 **核心特点**:
 - μ_L, σ_L: 在特征维度计算均值和方差
@@ -57,9 +53,7 @@ LN(x) = γ × \frac{x - μ_L}{\sqrt{σ_L^2 + ε}} + β
 - Transformer的标准选择
 
 #### 3. RMS Normalization
-```math
-RMSNorm(x) = γ × \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2 + ε}}
-```
+$$RMSNorm(x) = γ × \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2 + ε}}$$
 
 **核心特点**:
 - 只计算RMS，不减去均值

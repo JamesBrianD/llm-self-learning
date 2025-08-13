@@ -27,9 +27,7 @@
 
 ### Self-Attention计算公式
 
-```math
-Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V
-```
+$$Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$$
 
 **核心组件:**
 - **Query (Q)**: 查询向量，决定当前位置关注什么
@@ -41,9 +39,7 @@ Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V
 
 将输入投影到多个不同的子空间，并行计算多个注意力头：
 
-```math
-MultiHead(Q,K,V) = Concat(head_1, ..., head_h)W^O
-```
+$$MultiHead(Q,K,V) = Concat(head_1, ..., head_h)W^O$$
 
 其中 $head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)$
 
@@ -117,7 +113,6 @@ class SelfAttention(nn.Module):
 完成以下检验才算掌握本节：
 
 - [ ] 能画出Self-Attention的计算流程图
-- [ ] 可以手算简单的Attention权重
 - [ ] 完成Deep-ML平台的两个编程练习
 - [ ] 面试问题能用自己的话流利回答
 

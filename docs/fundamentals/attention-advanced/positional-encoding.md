@@ -54,10 +54,8 @@ sequence2 = ["爱", "北京", "我"]
 #### 1. Sinusoidal位置编码 (原始Transformer)
 
 **数学公式**:
-```math
-PE(pos, 2i) = sin(pos / 10000^{2i/d_{model}})
-PE(pos, 2i+1) = cos(pos / 10000^{2i/d_{model}})
-```
+$$PE(pos, 2i) = sin(pos / 10000^{2i/d_{model}})$$
+$$PE(pos, 2i+1) = cos(pos / 10000^{2i/d_{model}})$$
 
 **核心特点**:
 - 使用正弦余弦函数生成位置编码
@@ -96,13 +94,10 @@ input_emb = token_emb + pos_emb
 **数学推导**:
 
 **步骤1**: 将特征分为pairs，每对特征看作2D平面的坐标
-```math
-x = [x_1, x_2, x_3, x_4, ...] → [(x_1, x_2), (x_3, x_4), ...]
-```
+$$x = [x_1, x_2, x_3, x_4, ...] → [(x_1, x_2), (x_3, x_4), ...]$$
 
 **步骤2**: 对每一对特征应用旋转矩阵
-```math
-\begin{pmatrix}
+$$\begin{pmatrix}
 x_{m}^{(1)} \\
 x_{m}^{(2)}
 \end{pmatrix}
@@ -114,21 +109,16 @@ x_{m}^{(2)}
 \begin{pmatrix}
 x_{m}^{(1)} \\
 x_{m}^{(2)}
-\end{pmatrix}
-```
+\end{pmatrix}$$
 
 **步骤3**: 旋转后的向量
-```math
-\begin{pmatrix}
+$$\begin{pmatrix}
 x_{m}^{(1)} \cos(m\theta) - x_{m}^{(2)} \sin(m\theta) \\
 x_{m}^{(2)} \cos(m\theta) + x_{m}^{(1)} \sin(m\theta)
-\end{pmatrix}
-```
+\end{pmatrix}$$
 
 **核心性质**: 相对位置依赖
-```math
-\langle RoPE(q_m), RoPE(k_n) \rangle = \langle q_m, k_n \rangle \cos((m-n)\theta) + \text{其他项}
-```
+$$\langle RoPE(q_m), RoPE(k_n) \rangle = \langle q_m, k_n \rangle \cos((m-n)\theta) + \text{其他项}$$
 
 注意力分数只依赖于相对距离 (m-n)！
 
@@ -160,38 +150,27 @@ attention_score = QK^T + relative_position_bias[i-j]
 **推导步骤**:
 
 **目标**: 设计一个函数f，使得：
-```math
-\langle f(q, m), f(k, n) \rangle = g(q, k, m-n)
-```
+$$\langle f(q, m), f(k, n) \rangle = g(q, k, m-n)$$
 即注意力分数只依赖相对位置 m-n。
 
 **解决方案**: 复数域的旋转变换
 
 **步骤1**: 将实数向量映射到复数
-```math
-q_{1} + i q_{2} → q_{complex}
-```
+$$q_{1} + i q_{2} → q_{complex}$$
 
 **步骤2**: 应用复数旋转
-```math
-f(q, m) = q_{complex} \cdot e^{im\theta} = q_{complex} \cdot (\cos(m\theta) + i\sin(m\theta))
-```
+$$f(q, m) = q_{complex} \cdot e^{im\theta} = q_{complex} \cdot (\cos(m\theta) + i\sin(m\theta))$$
 
 **步骤3**: 验证相对位置性质
-```math
-\langle f(q,m), f(k,n) \rangle^* = \langle q \cdot e^{im\theta}, k \cdot e^{in\theta} \rangle
-= \langle q, k \rangle \cdot e^{i(m-n)\theta}
-```
+$$\langle f(q,m), f(k,n) \rangle^* = \langle q \cdot e^{im\theta}, k \cdot e^{in\theta} \rangle = \langle q, k \rangle \cdot e^{i(m-n)\theta}$$
 
 只依赖于 (m-n)！
 
 **步骤4**: 转换回实数域
-```math
-\begin{pmatrix}
+$$\begin{pmatrix}
 q_1 \cos(m\theta) - q_2 \sin(m\theta) \\
 q_1 \sin(m\theta) + q_2 \cos(m\theta)
-\end{pmatrix}
-```
+\end{pmatrix}$$
 
 **关键洞察**: 通过旋转变换，相对位置信息自然地编码在了向量的几何关系中。
 
