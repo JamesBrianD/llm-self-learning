@@ -409,6 +409,52 @@
   
   
     <li class="md-nav__item">
+      <a href="../../transformer/ffn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    前馈神经网络
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transformer/encoder-decoder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    编码器-解码器架构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../transformer/language-models/" class="md-nav__link">
         
   
@@ -735,16 +781,17 @@
           <li class="md-nav__item">
   <a href="#moe_1" class="md-nav__link">
     <span class="md-ellipsis">
-      MOE是什么？
+      MOE基本概念
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="MOE基本概念">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      核心优势
+      核心思想
     </span>
   </a>
   
@@ -754,9 +801,188 @@
     </nav>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#moe_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      MOE核心组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MOE核心组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-experts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 专家网络 (Experts)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-routergate" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 路由网络 (Router/Gate)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 聚合机制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      路由策略详解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="路由策略详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-token-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Token-Choice路由
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-expert-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Expert-Choice路由
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      负载均衡技术
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="负载均衡技术">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 辅助损失函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 专家容量限制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moe_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      MOE变体和优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MOE变体和优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-moe-vs-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 稀疏MOE vs 密集MOE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 层级MOE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      分布式训练挑战
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分布式训练挑战">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 通信模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 内存优化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       💬 面试问题解答
     </span>
@@ -774,13 +1000,31 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#q2-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2: MOE的主要挑战是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3: 如何解决MOE的负载均衡问题？
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       ✅ 学习检验
     </span>
@@ -789,7 +1033,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       🔗 相关链接
     </span>
@@ -819,6 +1063,144 @@
   
   <span class="md-ellipsis">
     分布式训练
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第4节 DeepSeek优化技术
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            第4节 DeepSeek优化技术
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deepseek-innovations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    学习概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deepseek-innovations/mla/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MLA核心技术
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deepseek-innovations/deepseek-moe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DeepSeek MoE创新
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deepseek-innovations/mtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MTP多token预测
     
   </span>
   
@@ -905,7 +1287,7 @@
   
   
   <span class="md-ellipsis">
-    第4节 Context Engineering
+    第5节 Context Engineering
     
   </span>
   
@@ -916,7 +1298,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
-            第4节 Context Engineering
+            第5节 Context Engineering
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -997,7 +1379,7 @@
   
   
   <span class="md-ellipsis">
-    第5节 RAG与Agent
+    第6节 RAG与Agent
     
   </span>
   
@@ -1008,7 +1390,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
-            第5节 RAG与Agent
+            第6节 RAG与Agent
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1112,7 +1494,7 @@
   
   
   <span class="md-ellipsis">
-    第6节 CoT与评测
+    第7节 CoT与评测
     
   </span>
   
@@ -1123,7 +1505,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
-            第6节 CoT与评测
+            第7节 CoT与评测
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1326,16 +1708,17 @@
           <li class="md-nav__item">
   <a href="#moe_1" class="md-nav__link">
     <span class="md-ellipsis">
-      MOE是什么？
+      MOE基本概念
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="MOE基本概念">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      核心优势
+      核心思想
     </span>
   </a>
   
@@ -1345,9 +1728,188 @@
     </nav>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#moe_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      MOE核心组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MOE核心组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-experts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 专家网络 (Experts)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-routergate" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 路由网络 (Router/Gate)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 聚合机制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      路由策略详解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="路由策略详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-token-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Token-Choice路由
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-expert-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Expert-Choice路由
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      负载均衡技术
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="负载均衡技术">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 辅助损失函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 专家容量限制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moe_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      MOE变体和优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MOE变体和优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-moe-vs-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 稀疏MOE vs 密集MOE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 层级MOE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      分布式训练挑战
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分布式训练挑战">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 通信模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 内存优化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       💬 面试问题解答
     </span>
@@ -1365,13 +1927,31 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#q2-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2: MOE的主要挑战是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3: 如何解决MOE的负载均衡问题？
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       ✅ 学习检验
     </span>
@@ -1380,7 +1960,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       🔗 相关链接
     </span>
@@ -1406,31 +1986,327 @@
 
 <h1 id="moe">MOE架构<a class="headerlink" href="#moe" title="Permanent link">&para;</a></h1>
 <h2 id="_1">🎯 本节目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>理解专家混合模型(Mixture of Experts)的核心原理和应用优势。</p>
+<p>深入理解专家混合模型(Mixture of Experts)的核心原理、路由机制和工程实现挑战。</p>
 <h2 id="_2">📝 知识总结<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="moe_1">MOE是什么？<a class="headerlink" href="#moe_1" title="Permanent link">&para;</a></h3>
-<p><strong>Mixture of Experts (MOE)</strong> 是一种稀疏激活的神经网络架构，通过路由机制将不同的输入分配给不同的"专家"子网络处理。</p>
-<h3 id="_3">核心优势<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>参数效率</strong>: 虽然总参数量大，但每次前向传播只激活部分参数</li>
-<li><strong>扩展能力</strong>: 可以通过增加专家数量来扩展模型容量</li>
-<li><strong>专业分工</strong>: 不同专家可以学习处理不同类型的输入</li>
-</ol>
-<h2 id="_4">💬 面试问题解答<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="moe_1">MOE基本概念<a class="headerlink" href="#moe_1" title="Permanent link">&para;</a></h3>
+<p><strong>Mixture of Experts (MOE)</strong> 是一种稀疏激活的神经网络架构，通过动态路由机制将不同输入分配给专门的"专家"子网络处理。</p>
+<h4 id="_3">核心思想<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>条件计算</strong>: 根据输入内容动态选择计算路径</li>
+<li><strong>专家分工</strong>: 不同专家学习处理不同类型的模式</li>
+<li><strong>稀疏激活</strong>: 每次只激活少数专家，降低计算复杂度</li>
+</ul>
+<h3 id="moe_2">MOE核心组件<a class="headerlink" href="#moe_2" title="Permanent link">&para;</a></h3>
+<h4 id="1-experts">1. 专家网络 (Experts)<a class="headerlink" href="#1-experts" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Expert</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_ff</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_ff</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_ff</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># 多个专家组成专家池</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">experts</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span><span class="n">Expert</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_ff</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_experts</span><span class="p">)])</span>
+</code></pre></div>
+<h4 id="2-routergate">2. 路由网络 (Router/Gate)<a class="headerlink" href="#2-routergate" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Router</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">num_experts</span><span class="p">):</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gate</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_experts</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="c1"># 计算每个专家的门控分数</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [batch, seq_len, num_experts]</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="c1"># 选择Top-K专家</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="n">top_k_logits</span><span class="p">,</span> <span class="n">top_k_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="n">top_k_probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">top_k_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="k">return</span> <span class="n">top_k_probs</span><span class="p">,</span> <span class="n">top_k_indices</span>
+</code></pre></div>
+<h4 id="3">3. 聚合机制<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">moe_forward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">experts</span><span class="p">,</span> <span class="n">router</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="c1"># 获取路由信息</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">probs</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">router</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [batch, seq_len, k], [batch, seq_len, k]</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="c1"># 初始化输出</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="c1"># 对每个选中的专家计算输出</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">expert_idx</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="n">expert_prob</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="c1"># 获取对应专家的输出</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="n">expert_output</span> <span class="o">=</span> <span class="n">experts</span><span class="p">[</span><span class="n">expert_idx</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="c1"># 按概率加权</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="n">output</span> <span class="o">+=</span> <span class="n">expert_prob</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">expert_output</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="k">return</span> <span class="n">output</span>
+</code></pre></div>
+<h3 id="_4">路由策略详解<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="1-token-choice">1. Token-Choice路由<a class="headerlink" href="#1-token-choice" title="Permanent link">&para;</a></h4>
+<p><strong>机制</strong>: 每个token选择top-k个专家
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">token_choice_routing</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">num_experts</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;每个token选择k个专家&quot;&quot;&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="c1"># 路由打分</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">router_logits</span> <span class="o">=</span> <span class="n">router</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [batch, seq_len, num_experts]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="c1"># 选择top-k专家</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">top_k_probs</span><span class="p">,</span> <span class="n">top_k_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">router_logits</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">top_k_probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">top_k_probs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">return</span> <span class="n">top_k_probs</span><span class="p">,</span> <span class="n">top_k_indices</span>
+</code></pre></div></p>
+<p><strong>优势</strong>: 
+- 保证每个token都被处理
+- 控制计算复杂度稳定</p>
+<p><strong>劣势</strong>:
+- 可能导致专家负载不均衡
+- 部分专家可能得不到训练</p>
+<h4 id="2-expert-choice">2. Expert-Choice路由<a class="headerlink" href="#2-expert-choice" title="Permanent link">&para;</a></h4>
+<p><strong>机制</strong>: 每个专家选择top-k个token
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">expert_choice_routing</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">num_experts</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;每个专家选择固定数量的token&quot;&quot;&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="c1"># 路由打分</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">router_logits</span> <span class="o">=</span> <span class="n">router</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [batch, seq_len, num_experts]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="c1"># 为每个专家选择top tokens</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">expert_assignments</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">for</span> <span class="n">expert_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_experts</span><span class="p">):</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="n">expert_scores</span> <span class="o">=</span> <span class="n">router_logits</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">expert_id</span><span class="p">]</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="n">top_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">expert_scores</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">capacity</span><span class="p">)</span><span class="o">.</span><span class="n">indices</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="n">expert_assignments</span><span class="p">[</span><span class="n">expert_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_tokens</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">return</span> <span class="n">expert_assignments</span>
+</code></pre></div></p>
+<p><strong>优势</strong>:
+- 自然的负载均衡
+- 专家能够选择最相关的输入</p>
+<p><strong>劣势</strong>:
+- 可能有token被丢弃
+- 实现更复杂</p>
+<h3 id="_5">负载均衡技术<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h4 id="1">1. 辅助损失函数<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_balancing_loss</span><span class="p">(</span><span class="n">router_probs</span><span class="p">,</span> <span class="n">expert_indices</span><span class="p">,</span> <span class="n">num_experts</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;计算负载均衡损失&quot;&quot;&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="c1"># 计算每个专家被选择的频率</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">expert_counts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_experts</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="k">for</span> <span class="n">expert_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_experts</span><span class="p">):</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        <span class="n">expert_counts</span><span class="p">[</span><span class="n">expert_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">expert_indices</span> <span class="o">==</span> <span class="n">expert_id</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="c1"># 理想情况下每个专家处理相同数量的token</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">ideal_count</span> <span class="o">=</span> <span class="n">expert_indices</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">/</span> <span class="n">num_experts</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="c1"># 计算负载不均衡损失</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">load_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">expert_counts</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ideal_count</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="k">return</span> <span class="n">load_loss</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># 总损失 = 主任务损失 + λ * 负载均衡损失</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="n">total_loss</span> <span class="o">=</span> <span class="n">task_loss</span> <span class="o">+</span> <span class="n">lambda_balance</span> <span class="o">*</span> <span class="n">load_balancing_loss</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">num_experts</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="2">2. 专家容量限制<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">capacity_limited_routing</span><span class="p">(</span><span class="n">router_logits</span><span class="p">,</span> <span class="n">capacity_factor</span><span class="o">=</span><span class="mf">1.25</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;限制每个专家的处理容量&quot;&quot;&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">num_tokens</span> <span class="o">=</span> <span class="n">router_logits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">router_logits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">expert_capacity</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">capacity_factor</span> <span class="o">*</span> <span class="n">num_tokens</span> <span class="o">/</span> <span class="n">num_experts</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="c1"># 为每个专家分配固定容量</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">expert_assignments</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">expert_counts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_experts</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="k">for</span> <span class="n">token_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_tokens</span><span class="p">):</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="c1"># 获取当前token的专家偏好</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>        <span class="n">token_probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">router_logits</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">token_idx</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>        <span class="c1"># 选择容量未满的最优专家</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>        <span class="k">for</span> <span class="n">expert_id</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">token_probs</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>            <span class="k">if</span> <span class="n">expert_counts</span><span class="p">[</span><span class="n">expert_id</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">expert_capacity</span><span class="p">:</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>                <span class="n">expert_assignments</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">token_idx</span><span class="p">,</span> <span class="n">expert_id</span><span class="p">))</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>                <span class="n">expert_counts</span><span class="p">[</span><span class="n">expert_id</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>                <span class="k">break</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>    <span class="k">return</span> <span class="n">expert_assignments</span>
+</code></pre></div>
+<h3 id="moe_3">MOE变体和优化<a class="headerlink" href="#moe_3" title="Permanent link">&para;</a></h3>
+<h4 id="1-moe-vs-moe">1. 稀疏MOE vs 密集MOE<a class="headerlink" href="#1-moe-vs-moe" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>稀疏MOE</th>
+<th>密集MOE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>激活专家数</strong></td>
+<td>Top-K (K&lt;&lt;N)</td>
+<td>全部专家</td>
+</tr>
+<tr>
+<td><strong>计算复杂度</strong></td>
+<td>O(K)</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td><strong>参数利用率</strong></td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td><strong>扩展性</strong></td>
+<td>好</td>
+<td>差</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-moe">2. 层级MOE<a class="headerlink" href="#2-moe" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">HierarchicalMoE</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;层级专家混合模型&quot;&quot;&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">num_coarse_experts</span><span class="p">,</span> <span class="n">num_fine_experts</span><span class="p">):</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="c1"># 粗粒度专家选择</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">coarse_router</span> <span class="o">=</span> <span class="n">Router</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_coarse_experts</span><span class="p">)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>        <span class="c1"># 细粒度专家组</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">fine_routers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>            <span class="n">Router</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_fine_experts</span><span class="p">)</span> 
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_coarse_experts</span><span class="p">)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>        <span class="p">])</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        <span class="c1"># 专家网络</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">experts</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span><span class="n">Expert</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_ff</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_fine_experts</span><span class="p">)])</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_coarse_experts</span><span class="p">)</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>        <span class="p">])</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>        <span class="c1"># 第一层：选择粗粒度专家</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>        <span class="n">coarse_probs</span><span class="p">,</span> <span class="n">coarse_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coarse_router</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>        <span class="c1"># 第二层：在选中的粗粒度专家内选择细粒度专家</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">coarse_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coarse_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]):</span>  <span class="c1"># 简化处理</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>            <span class="n">fine_probs</span><span class="p">,</span> <span class="n">fine_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fine_routers</span><span class="p">[</span><span class="n">coarse_idx</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>            <span class="c1"># 计算细粒度专家输出</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">fine_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fine_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]):</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>                <span class="n">expert_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experts</span><span class="p">[</span><span class="n">coarse_idx</span><span class="p">][</span><span class="n">fine_idx</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>                <span class="n">weight</span> <span class="o">=</span> <span class="n">coarse_probs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">fine_probs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>                <span class="n">output</span> <span class="o">+=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">expert_output</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>
+<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>        <span class="k">return</span> <span class="n">output</span>
+</code></pre></div>
+<h3 id="_6">分布式训练挑战<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h4 id="1_1">1. 通信模式<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># All-to-All通信模式</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">all_to_all_communication</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">expert_assignments</span><span class="p">):</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="sd">    将tokens分发到不同设备上的专家</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="c1"># Token dispatch: 根据路由结果重新分布token</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">expert_inputs</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">for</span> <span class="n">expert_id</span><span class="p">,</span> <span class="n">token_list</span> <span class="ow">in</span> <span class="n">expert_assignments</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="n">device_id</span> <span class="o">=</span> <span class="n">expert_id</span> <span class="o">%</span> <span class="n">world_size</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="n">expert_inputs</span><span class="p">[</span><span class="n">device_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">expert_inputs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">device_id</span><span class="p">,</span> <span class="p">[])</span> <span class="o">+</span> <span class="n">token_list</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="c1"># 跨设备通信</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="k">for</span> <span class="n">device_id</span><span class="p">,</span> <span class="n">tokens</span> <span class="ow">in</span> <span class="n">expert_inputs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        <span class="n">send_to_device</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">device_id</span><span class="p">)</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    <span class="c1"># Expert processing</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>    <span class="n">expert_outputs</span> <span class="o">=</span> <span class="n">process_on_experts</span><span class="p">(</span><span class="n">expert_inputs</span><span class="p">)</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    <span class="c1"># Token combine: 收集专家输出</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>    <span class="n">final_outputs</span> <span class="o">=</span> <span class="n">all_gather</span><span class="p">(</span><span class="n">expert_outputs</span><span class="p">)</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>    <span class="k">return</span> <span class="n">final_outputs</span>
+</code></pre></div>
+<h4 id="2_1">2. 内存优化<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MemoryEfficientMoE</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;内存高效的MOE实现&quot;&quot;&quot;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">num_experts</span><span class="p">,</span> <span class="n">expert_capacity</span><span class="p">):</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">num_experts</span> <span class="o">=</span> <span class="n">num_experts</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">expert_capacity</span> <span class="o">=</span> <span class="n">expert_capacity</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        <span class="c1"># 共享专家参数存储</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">expert_weights</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_experts</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_ff</span><span class="p">))</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">router</span> <span class="o">=</span> <span class="n">Router</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_experts</span><span class="p">)</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>        <span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>        <span class="c1"># 获取路由决策</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>        <span class="n">probs</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">router</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>        <span class="c1"># 重塑为专家批处理格式</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>        <span class="n">flat_x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>        <span class="n">flat_probs</span> <span class="o">=</span> <span class="n">probs</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>        <span class="n">flat_indices</span> <span class="o">=</span> <span class="n">indices</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>        <span class="c1"># 批量处理减少内存占用</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>        <span class="k">for</span> <span class="n">batch_start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">flat_x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">expert_capacity</span><span class="p">):</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>            <span class="n">batch_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">batch_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">expert_capacity</span><span class="p">,</span> <span class="n">flat_x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>            <span class="n">batch_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_batch</span><span class="p">(</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>                <span class="n">flat_x</span><span class="p">[</span><span class="n">batch_start</span><span class="p">:</span><span class="n">batch_end</span><span class="p">],</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>                <span class="n">flat_probs</span><span class="p">[</span><span class="n">batch_start</span><span class="p">:</span><span class="n">batch_end</span><span class="p">],</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>                <span class="n">flat_indices</span><span class="p">[</span><span class="n">batch_start</span><span class="p">:</span><span class="n">batch_end</span><span class="p">]</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>            <span class="p">)</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>            <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_output</span><span class="p">)</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>        <span class="c1"># 重组输出</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>        <span class="n">final_output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>        <span class="k">return</span> <span class="n">final_output</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_7">💬 面试问题解答<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <h3 id="q1-moe">Q1: MOE是什么，它有什么好处呢？<a class="headerlink" href="#q1-moe" title="Permanent link">&para;</a></h3>
 <p><strong>简洁回答</strong>: MOE是专家混合模型，通过稀疏激活机制让不同的子网络(专家)处理不同的输入，在保持计算量相对稳定的情况下大幅增加模型容量。</p>
 <p><strong>详细解释</strong>:
 - <strong>工作原理</strong>: 输入通过门控网络选择激活少数几个专家
-- <strong>核心优势</strong>: 参数量大但计算量可控
-- <strong>实际应用</strong>: Google的Switch Transformer等大模型</p>
-<h2 id="_5">✅ 学习检验<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+- <strong>核心优势</strong>: 参数量大但计算量可控，实现条件计算
+- <strong>实际应用</strong>: Google的Switch Transformer、GLaM、PaLM等大模型</p>
+<h3 id="q2-moe">Q2: MOE的主要挑战是什么？<a class="headerlink" href="#q2-moe" title="Permanent link">&para;</a></h3>
+<p><strong>核心挑战</strong>:</p>
+<ol>
+<li><strong>负载均衡</strong>: 防止所有输入都路由到少数专家</li>
+<li><strong>通信开销</strong>: 分布式训练中的All-to-All通信成本高</li>
+<li><strong>训练不稳定</strong>: 路由网络的训练可能不收敛</li>
+<li><strong>推理复杂度</strong>: 动态路由增加推理时的调度复杂性</li>
+</ol>
+<h3 id="q3-moe">Q3: 如何解决MOE的负载均衡问题？<a class="headerlink" href="#q3-moe" title="Permanent link">&para;</a></h3>
+<p><strong>主要方法</strong>:</p>
+<ol>
+<li><strong>辅助损失</strong>: 添加鼓励均匀分布的正则化项</li>
+<li><strong>专家容量限制</strong>: 限制每个专家处理的token数量</li>
+<li><strong>Expert-Choice路由</strong>: 让专家主动选择要处理的token</li>
+<li><strong>噪声注入</strong>: 在路由决策中加入随机性</li>
+</ol>
+<h2 id="_8">✅ 学习检验<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ul>
-<li>[ ] 理解MOE的稀疏激活原理</li>
-<li>[ ] 能解释MOE相比稠密模型的优势</li>
+<li>[ ] 理解MOE的基本架构和工作原理</li>
+<li>[ ] 掌握不同路由策略的优劣</li>
+<li>[ ] 了解负载均衡的重要性和解决方案</li>
+<li>[ ] 理解MOE在分布式训练中的挑战</li>
 </ul>
-<h2 id="_6">🔗 相关链接<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_9">🔗 相关链接<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../distributed/">下一节：分布式训练</a></li>
+<li><a href="../../deepseek-innovations/">下一章：DeepSeek优化技术</a></li>
 <li><a href="../">返回：LLM升级技术概览</a></li>
 </ul>
 
