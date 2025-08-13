@@ -1,5 +1,5 @@
-site_name: 我的文档库
-site_description: 基于 MkDocs Material 构建的文档站点
+site_name: LLM 自学指南
+site_description: 大语言模型与AI学习资源汇总
 site_url: https://jamesbriand.github.io/llm-self-learning/
 
 nav:
@@ -14,35 +14,51 @@ nav:
 theme:
   name: material
   language: zh
-  palette:
-    # 浅色模式
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: 切换到深色模式
-    # 深色模式
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: 切换到浅色模式
+  static_templates:
+    - 404.html
+  favicon: assets/images/favicon.png
+  include_search_page: false
+  search_index_only: true
+
   features:
-    - navigation.tabs
-    - navigation.sections
+    - header.autohide
+    - navigation.tracking
     - navigation.top
     - search.highlight
     - search.share
-    - header.autohide
-    - content.code.copy
+    - search.suggest
+    - content.code.annotate
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: light blue
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: cyan
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+  font:
+    text: Roboto Slab
+    code: Roboto Mono
 
 plugins:
   - search:
-      lang: zh
+      lang:
+        - zh
+        - en
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
+  - footnotes
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
