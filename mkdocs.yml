@@ -29,7 +29,13 @@ nav:
       - DeepSeek MoE创新: fundamentals/deepseek-innovations/deepseek-moe.md
       - MTP多token预测: fundamentals/deepseek-innovations/mtp.md
   - 模型训练:
-    - 第8节 强化学习与对齐:
+    - 第8节 参数高效微调:
+      - LoRA技术: training/parameter-efficient/lora.md
+    - 第9节 后训练技术:
+      - 学习概览: training/post-training/index.md
+      - 后预训练技术: training/post-training/post-pretraining.md
+      - 监督微调方法: training/post-training/supervised-finetuning.md
+    - 第10节 强化学习与对齐:
       - 学习概览: training/rlhf-alignment/index.md
       - RLHF核心技术: training/rlhf-alignment/rlhf-core.md
       - DPO与Constitutional AI: training/rlhf-alignment/dpo-constitutional.md
