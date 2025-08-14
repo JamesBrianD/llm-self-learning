@@ -6,16 +6,19 @@
 
 **重点面试问题预览：**
 - Attention计算公式和原理
+- FFN在Transformer中的作用
 - Encoder-Only vs Decoder-Only架构差异
 - 为什么主流大模型选择Decoder-Only
 - GPT和BERT的架构区别
+- BPE和WordPiece的区别
 
 ## 📅 学习计划
 
-**建议学习时间：2天**
+**建议学习时间：3天**
 
-- **Day 1**: Attention机制深入理解
-- **Day 2**: 语言模型架构对比分析
+- **Day 1**: Attention机制 + FFN技术深入理解
+- **Day 2**: 编码器-解码器架构 + 语言模型架构对比
+- **Day 3**: Tokenizer技术 + 综合实践与复习
 
 ## 📚 学习路径
 
@@ -43,12 +46,19 @@
 - 主流模型选择分析
 - 模型架构图解
 
+### 5. [Tokenizer技术](tokenizer.md)
+- BPE/WordPiece/Unigram算法对比
+- Byte-level BPE现代方案
+- 实际工程应用和优化
+- 多语言处理策略
+
 ## ✅ 学习检验标准
 
-完成以下两项才算掌握本节：
+完成以下三项才算掌握本节：
 
-1. **问题解答**: 能用自己的话回答所有面试问题
-2. **代码实现**: 完成Self-Attention和Multi-Head Attention的编程练习
+1. **问题解答**: 能用自己的话回答所有6个核心面试问题
+2. **代码实现**: 完成Self-Attention、FFN、Tokenizer的编程练习
+3. **架构理解**: 能画出并解释完整的Transformer架构图
 
 ## 🚀 开始学习
 

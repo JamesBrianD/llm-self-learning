@@ -28,6 +28,13 @@ nav:
       - MLA核心技术: fundamentals/deepseek-innovations/mla.md
       - DeepSeek MoE创新: fundamentals/deepseek-innovations/deepseek-moe.md
       - MTP多token预测: fundamentals/deepseek-innovations/mtp.md
+  - 模型训练:
+    - 第8节 强化学习与对齐:
+      - 学习概览: training/rlhf-alignment/index.md
+      - RLHF核心技术: training/rlhf-alignment/rlhf-core.md
+      - DPO与Constitutional AI: training/rlhf-alignment/dpo-constitutional.md
+      - 奖励模型训练: training/rlhf-alignment/reward-modeling.md
+      - 框架与实现: training/rlhf-alignment/frameworks-implementation.md
   - 大模型应用:
     - 第5节 Context Engineering:
       - 学习概览: applications/context-engineering/index.md
