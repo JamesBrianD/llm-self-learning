@@ -1710,10 +1710,11 @@
 - LayerNorm vs RMSNorm的选择
 - RoPE位置编码的数学原理</p>
 <h2 id="_2">📅 学习计划<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p><strong>建议学习时间：2天</strong></p>
+<p><strong>建议学习时间：3天</strong></p>
 <ul>
-<li><strong>Day 1</strong>: 注意力变体 + KV Cache技术</li>
-<li><strong>Day 2</strong>: 归一化技术 + 位置编码升级</li>
+<li><strong>Day 1</strong>: 注意力变体深度学习 (MHA→MQA→GQA→MLA)</li>
+<li><strong>Day 2</strong>: KV Cache技术 + 归一化技术详解</li>
+<li><strong>Day 3</strong>: 位置编码升级 + 综合技术对比分析</li>
 </ul>
 <h2 id="_3">📚 学习路径<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="1">1. <a href="mha-variants/">多头注意力变体</a><a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
@@ -1758,15 +1759,18 @@
 <h2 id="_7">✅ 学习检验标准<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>完成以下项目才算掌握本节：</p>
 <ol>
-<li><strong>概念理解</strong>: 清晰区分各种注意力变体</li>
-<li><strong>代码实现</strong>: 完成GQA适配和KV Cache演示</li>
-<li><strong>面试准备</strong>: 能解释技术选择的工程原因</li>
+<li><strong>技术对比</strong>: 清晰区分MHA/MQA/GQA/MLA的优缺点和适用场景</li>
+<li><strong>代码实现</strong>: 完成GQA适配和KV Cache演示代码</li>
+<li><strong>原理理解</strong>: 能从数学角度解释RoPE和RMSNorm的工作原理</li>
+<li><strong>面试准备</strong>: 能解释每种技术选择背后的工程trade-off</li>
 </ol>
 <h2 id="_8">💡 学习提示<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>这一节技术含量较高，建议：
-- 先理解原理，再看具体实现
-- 重点关注工程优化的motivation
-- 通过对比理解不同技术的trade-off</p>
+<p>这一节技术含量很高，是现代大模型的核心优化技术，建议：
+- <strong>循序渐进</strong>: 先理解基础概念，再深入数学推导
+- <strong>重点关注</strong>: 每种技术的motivation和解决的具体问题
+- <strong>对比学习</strong>: 通过技术对比加深理解各自的trade-off
+- <strong>实践验证</strong>: 通过代码实现加深对原理的理解
+- <strong>面试导向</strong>: 重点掌握技术选择的工程考量</p>
 <h2 id="_9">🚀 开始学习<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>选择感兴趣的技术模块深入学习，每个都是现代大模型的核心技术！</p>
 
