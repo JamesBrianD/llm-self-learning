@@ -129,6 +129,22 @@
          <lastmod>2025-08-14</lastmod>
     </url>
     <url>
+         <loc>https://jamesbriand.github.io/llm-self-learning/training/parameter-efficient/lora/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://jamesbriand.github.io/llm-self-learning/training/post-training/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://jamesbriand.github.io/llm-self-learning/training/post-training/post-pretraining/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://jamesbriand.github.io/llm-self-learning/training/post-training/supervised-finetuning/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
          <loc>https://jamesbriand.github.io/llm-self-learning/training/rlhf-alignment/</loc>
          <lastmod>2025-08-14</lastmod>
     </url>
